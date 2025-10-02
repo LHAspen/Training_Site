@@ -162,6 +162,10 @@ import { Subscription } from 'rxjs';
       font-size: 14px;
       cursor: pointer;
       transition: background-color 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 48px;
     }
 
     .search-button:hover {
