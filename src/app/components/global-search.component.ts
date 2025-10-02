@@ -85,12 +85,13 @@ import { Subscription } from 'rxjs';
     .search-input-wrapper {
       position: relative;
       display: flex;
-      align-items: center;
+      align-items: stretch;
       background: white;
       border: 1px solid #e5e7eb;
       border-radius: 6px;
       padding: 0;
       width: 100%;
+      gap: 0;
     }
 
     .search-input-wrapper:focus-within {
@@ -141,8 +142,9 @@ import { Subscription } from 'rxjs';
       font-size: 14px;
       color: #1f2937;
       outline: none;
-      padding: 12px 12px 12px 4px;
+      padding: 12px 0 12px 16px;
       letter-spacing: 0.3px;
+      margin: 0;
     }
 
     .search-input::placeholder {
@@ -156,7 +158,7 @@ import { Subscription } from 'rxjs';
       background: #1c4a4c;
       border: none;
       color: white;
-      padding: 8px 16px;
+      padding: 12px 16px;
       border-radius: 0 5px 5px 0;
       font-family: 'BordBiaSans-Regular', Arial, sans-serif;
       font-size: 14px;
@@ -166,6 +168,7 @@ import { Subscription } from 'rxjs';
       align-items: center;
       justify-content: center;
       min-width: 48px;
+      margin: 0;
     }
 
     .search-button:hover {
