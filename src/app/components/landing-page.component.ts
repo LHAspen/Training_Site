@@ -191,6 +191,23 @@ import { SearchResult } from '../services/search.service';
       .header-section {
         padding: 16px 20px;
       }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .logo-section {
+        justify-content: center;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
 
       .hero-section {
         flex-direction: column;
@@ -205,30 +222,15 @@ import { SearchResult } from '../services/search.service';
       }
 
       .hero-title {
-        font-size: 36px;
-      }
-
-      .help-section {
-        padding: 40px 20px;
-      }
-
-      .content-cards {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-      }
-
-      .content-card {
-        max-width: 360px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .hero-title {
         font-size: 28px;
       }
 
       .hero-subtitle {
         font-size: 16px;
+      }
+
+      .help-section {
+        padding: 40px 20px;
       }
 
       .help-title {
@@ -238,14 +240,17 @@ import { SearchResult } from '../services/search.service';
       .content-cards {
         grid-template-columns: 1fr;
         gap: 16px;
+        width: 100%;
       }
 
       .content-card {
         height: 80px;
+        width: 100%;
+        max-width: none;
       }
 
-      .content-card span {
-        font-size: 14px;
+      .card-text {
+        font-size: 18px;
       }
     }
 

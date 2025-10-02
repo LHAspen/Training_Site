@@ -374,6 +374,22 @@ import { SearchResult } from '../services/search.service';
       }
     }
 
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .logo-section {
+        justify-content: center;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
     .no-results {
       width: 100%;
       display: flex;
@@ -407,7 +423,6 @@ import { SearchResult } from '../services/search.service';
       margin: 0;
     }
 
-    @media (max-width: 768px) {
       .hero-title {
         font-size: 36px;
       }
@@ -419,11 +434,17 @@ import { SearchResult } from '../services/search.service';
       .content-cards {
         grid-template-columns: 1fr;
         gap: 24px;
+        width: 100%;
       }
 
       .content-card {
         width: 100%;
-        max-width: 320px;
+        max-width: none;
+      }
+
+      .search-workshops {
+        width: 100%;
+        max-width: none;
       }
     }
 

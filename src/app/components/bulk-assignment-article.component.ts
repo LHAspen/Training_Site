@@ -476,6 +476,27 @@ import { SearchResult } from '../services/search.service';
         font-size: 36px;
       }
     }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .article-content {
+        padding: 20px;
+      }
+    }
   `],
   template: `
     <div class="article-page">
