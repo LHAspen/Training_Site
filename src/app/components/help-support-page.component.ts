@@ -434,7 +434,7 @@ import { SearchResult } from '../services/search.service';
       <div class="header-section">
         <div class="header-container">
           <div class="logo-section">
-            <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo">
+            <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="onNavigateToHome.emit()" style="cursor: pointer;">
           </div>
           <div class="header-actions">
             <app-global-search (onSearchResult)="handleSearchResult($event)"></app-global-search>
@@ -456,7 +456,7 @@ import { SearchResult } from '../services/search.service';
               <span class="breadcrumb-separator">></span>
             </li>
             <li class="breadcrumb-item">
-                            <span class="breadcrumb-current">FSR HelpDesk</span>
+                            <span class="breadcrumb-current">FRS HelpDesk</span>
             </li>
           </ol>
         </div>
@@ -466,7 +466,7 @@ import { SearchResult } from '../services/search.service';
       <div class="hero-section">
         <div class="hero-content">
           <div class="hero-text">
-                        <h1 class="hero-title">FSR HelpDesk</h1>
+                        <h1 class="hero-title">FRS HelpDesk</h1>
             <p class="hero-subtitle">
               Essential resources and contact information to facilitate effective collaboration and 
               assistance throughout the audit process
@@ -481,7 +481,7 @@ import { SearchResult } from '../services/search.service';
       <!-- Content Section -->
       <div class="content-section">
         <div class="content-header">
-                    <h2 class="content-title">All FSR HelpDesk Content</h2>
+                    <h2 class="content-title">All FRS HelpDesk Content</h2>
           <div class="search-workshops">
             <div class="search-container">
               <input 

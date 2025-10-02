@@ -73,11 +73,11 @@ export class SearchService {
     },
     {
       id: '8',
-      title: 'FSR HelpDesk',
+      title: 'FRS HelpDesk',
       description: 'Get support and assistance from our helpdesk team',
       category: 'Category',
       url: '/help-support',
-      keywords: ['helpdesk', 'support', 'assistance', 'fsr', 'help', 'contact']
+      keywords: ['helpdesk', 'support', 'assistance', 'frs', 'help', 'contact']
     },
     {
       id: '9',

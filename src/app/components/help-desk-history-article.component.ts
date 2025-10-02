@@ -408,7 +408,7 @@ import { SearchResult } from '../services/search.service';
       <div class="header-section">
         <div class="header-container">
           <div class="logo-section">
-            <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo">
+            <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="onNavigateToHome.emit()" style="cursor: pointer;">
           </div>
           <div class="header-actions">
             <app-global-search (onSearchResult)="handleSearchResult($event)"></app-global-search>

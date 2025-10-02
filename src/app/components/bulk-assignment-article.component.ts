@@ -482,7 +482,7 @@ import { SearchResult } from '../services/search.service';
       <!-- Header Section -->
       <div class="header-section">
         <div class="header-container">
-          <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo">
+          <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="onNavigateToHome.emit()" style="cursor: pointer;">
           <div class="header-actions">
             <app-global-search (onSearchResult)="handleSearchResult($event)"></app-global-search>
             <button class="logout-button">Logout</button>
