@@ -203,15 +203,22 @@ import { SearchResult } from '../services/search.service';
 
     .toc-link {
       color: #004b4e;
+      background: none;
+      border: none;
       text-decoration: none;
       font-family: 'BordBiaSans-Regular', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.4;
       padding: 8px 0;
       display: block;
+      width: 100%;
+      text-align: left;
       border-left: 3px solid transparent;
       padding-left: 12px;
       transition: all 0.2s ease;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .toc-link:hover {
@@ -225,6 +232,11 @@ import { SearchResult } from '../services/search.service';
       border-left-color: #009077;
       background: rgba(0, 144, 119, 0.1);
       font-weight: 500;
+    }
+
+    .toc-link:focus {
+      outline: 2px solid #009077;
+      outline-offset: 2px;
     }
 
     /* Main Content Area */
@@ -573,19 +585,19 @@ import { SearchResult } from '../services/search.service';
           <h2 class="toc-title">Table of Contents</h2>
           <ul class="toc-list">
             <li class="toc-item">
-              <a href="#summary" class="toc-link" [class.active]="activeSection === 'summary'" (click)="scrollToSection('summary')">Summary</a>
+              <button class="toc-link" [class.active]="activeSection === 'summary'" (click)="scrollToSection($event, 'summary')">Summary</button>
             </li>
             <li class="toc-item">
-              <a href="#introduction" class="toc-link" [class.active]="activeSection === 'introduction'" (click)="scrollToSection('introduction')">Introduction</a>
+              <button class="toc-link" [class.active]="activeSection === 'introduction'" (click)="scrollToSection($event, 'introduction')">Introduction</button>
             </li>
             <li class="toc-item">
-              <a href="#bulk-assignment" class="toc-link" [class.active]="activeSection === 'bulk-assignment'" (click)="scrollToSection('bulk-assignment')">Bulk Assignment of Auditors</a>
+              <button class="toc-link" [class.active]="activeSection === 'bulk-assignment'" (click)="scrollToSection($event, 'bulk-assignment')">Bulk Assignment of Auditors</button>
             </li>
             <li class="toc-item">
-              <a href="#more-information" class="toc-link" [class.active]="activeSection === 'more-information'" (click)="scrollToSection('more-information')">More Information</a>
+              <button class="toc-link" [class.active]="activeSection === 'more-information'" (click)="scrollToSection($event, 'more-information')">More Information</button>
             </li>
             <li class="toc-item">
-              <a href="#steps-to-bulk-assign" class="toc-link" [class.active]="activeSection === 'steps-to-bulk-assign'" (click)="scrollToSection('steps-to-bulk-assign')">Steps to Bulk Assign Auditors</a>
+              <button class="toc-link" [class.active]="activeSection === 'steps-to-bulk-assign'" (click)="scrollToSection($event, 'steps-to-bulk-assign')">Steps to Bulk Assign Auditors</button>
             </li>
           </ul>
         </nav>
@@ -767,25 +779,42 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
     this.updateActiveSection();
   }
   
-  scrollToSection(sectionId: string) {
+  scrollToSection(event: Event, sectionId: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ 
-        behavior: 'smooth',
-        block: 'start'
-      });
       // Update active section immediately for better UX
       this.activeSection = sectionId;
+      
+      // Use a slight delay to prevent conflicts with scroll listener
+      setTimeout(() => {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 10);
     }
   }
   
+  private lastScrollUpdate = 0;
+  
   private updateActiveSection() {
+    const now = Date.now();
+    if (now - this.lastScrollUpdate < 100) {
+      return; // Throttle updates to prevent rapid changes
+    }
+    this.lastScrollUpdate = now;
+    
     const scrollPosition = window.scrollY + 100; // Offset for header
     
     for (let i = this.sections.length - 1; i >= 0; i--) {
       const section = document.getElementById(this.sections[i]);
       if (section && section.offsetTop <= scrollPosition) {
-        this.activeSection = this.sections[i];
+        if (this.activeSection !== this.sections[i]) {
+          this.activeSection = this.sections[i];
+        }
         break;
       }
     }

@@ -201,15 +201,22 @@ import { SearchResult } from '../services/search.service';
 
     .toc-link {
       color: #666;
+      background: none;
+      border: none;
       text-decoration: none;
       font-family: 'BordBiaSans-Regular', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.4;
       display: block;
+      width: 100%;
+      text-align: left;
       padding: 8px 12px;
       border-radius: 6px;
       transition: all 0.2s ease;
       border-left: 3px solid transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .toc-link:hover {
@@ -223,6 +230,11 @@ import { SearchResult } from '../services/search.service';
       color: #009077;
       border-left-color: #009077;
       font-weight: 500;
+    }
+
+    .toc-link:focus {
+      outline: 2px solid #009077;
+      outline-offset: 2px;
     }
 
     /* Main Article Content */
@@ -477,29 +489,29 @@ import { SearchResult } from '../services/search.service';
           <h3 class="toc-title">Table of Contents</h3>
           <ul class="toc-list">
             <li class="toc-item">
-              <a href="#overview" class="toc-link" [class.active]="activeSection === 'overview'" (click)="scrollToSection('overview')">
+              <button class="toc-link" [class.active]="activeSection === 'overview'" (click)="scrollToSection($event, 'overview')">
                 Overview
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#preparation" class="toc-link" [class.active]="activeSection === 'preparation'" (click)="scrollToSection('preparation')">
+              <button class="toc-link" [class.active]="activeSection === 'preparation'" (click)="scrollToSection($event, 'preparation')">
                 Call Preparation
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#best-practices" class="toc-link" [class.active]="activeSection === 'best-practices'" (click)="scrollToSection('best-practices')">
+              <button class="toc-link" [class.active]="activeSection === 'best-practices'" (click)="scrollToSection($event, 'best-practices')">
                 Best Practices
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#documentation" class="toc-link" [class.active]="activeSection === 'documentation'" (click)="scrollToSection('documentation')">
+              <button class="toc-link" [class.active]="activeSection === 'documentation'" (click)="scrollToSection($event, 'documentation')">
                 Documentation
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#follow-up" class="toc-link" [class.active]="activeSection === 'follow-up'" (click)="scrollToSection('follow-up')">
+              <button class="toc-link" [class.active]="activeSection === 'follow-up'" (click)="scrollToSection($event, 'follow-up')">
                 Follow-up Actions
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -687,24 +699,43 @@ export class PreAuditCallsArticleComponent implements OnInit, OnDestroy {
     this.updateActiveSection();
   }
 
+  private lastScrollUpdate = 0;
+  
   private updateActiveSection() {
+    const now = Date.now();
+    if (now - this.lastScrollUpdate < 100) {
+      return; // Throttle updates to prevent rapid changes
+    }
+    this.lastScrollUpdate = now;
+    
     const sections = ['overview', 'preparation', 'best-practices', 'documentation', 'follow-up'];
     const scrollPosition = window.pageYOffset + 100;
 
     for (let i = sections.length - 1; i >= 0; i--) {
       const element = document.getElementById(sections[i]);
       if (element && element.offsetTop <= scrollPosition) {
-        this.activeSection = sections[i];
+        if (this.activeSection !== sections[i]) {
+          this.activeSection = sections[i];
+        }
         break;
       }
     }
   }
 
-  scrollToSection(sectionId: string) {
+  scrollToSection(event: Event, sectionId: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80; // Account for header
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      // Update active section immediately for better UX
+      this.activeSection = sectionId;
+      
+      // Use a slight delay to prevent conflicts with scroll listener
+      setTimeout(() => {
+        const offsetTop = element.offsetTop - 80; // Account for header
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }, 10);
     }
   }
 

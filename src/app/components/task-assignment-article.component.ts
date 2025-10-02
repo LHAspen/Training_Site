@@ -201,15 +201,22 @@ import { SearchResult } from '../services/search.service';
 
     .toc-link {
       color: #666;
+      background: none;
+      border: none;
       text-decoration: none;
       font-family: 'BordBiaSans-Regular', Arial, sans-serif;
       font-size: 14px;
       line-height: 1.4;
       display: block;
+      width: 100%;
+      text-align: left;
       padding: 8px 12px;
       border-radius: 6px;
       transition: all 0.2s ease;
       border-left: 3px solid transparent;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .toc-link:hover {
@@ -223,6 +230,11 @@ import { SearchResult } from '../services/search.service';
       color: #009077;
       border-left-color: #009077;
       font-weight: 500;
+    }
+
+    .toc-link:focus {
+      outline: 2px solid #009077;
+      outline-offset: 2px;
     }
 
     /* Main Article Content */
@@ -477,29 +489,29 @@ import { SearchResult } from '../services/search.service';
           <h3 class="toc-title">Table of Contents</h3>
           <ul class="toc-list">
             <li class="toc-item">
-              <a href="#overview" class="toc-link" [class.active]="activeSection === 'overview'" (click)="scrollToSection('overview')">
+              <button class="toc-link" [class.active]="activeSection === 'overview'" (click)="scrollToSection($event, 'overview')">
                 Overview
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#assignment-process" class="toc-link" [class.active]="activeSection === 'assignment-process'" (click)="scrollToSection('assignment-process')">
+              <button class="toc-link" [class.active]="activeSection === 'assignment-process'" (click)="scrollToSection($event, 'assignment-process')">
                 Assignment Process
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#task-types" class="toc-link" [class.active]="activeSection === 'task-types'" (click)="scrollToSection('task-types')">
+              <button class="toc-link" [class.active]="activeSection === 'task-types'" (click)="scrollToSection($event, 'task-types')">
                 Task Types
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#monitoring" class="toc-link" [class.active]="activeSection === 'monitoring'" (click)="scrollToSection('monitoring')">
+              <button class="toc-link" [class.active]="activeSection === 'monitoring'" (click)="scrollToSection($event, 'monitoring')">
                 Monitoring & Tracking
-              </a>
+              </button>
             </li>
             <li class="toc-item">
-              <a href="#escalation" class="toc-link" [class.active]="activeSection === 'escalation'" (click)="scrollToSection('escalation')">
+              <button class="toc-link" [class.active]="activeSection === 'escalation'" (click)="scrollToSection($event, 'escalation')">
                 Escalation Procedures
-              </a>
+              </button>
             </li>
           </ul>
         </div>
@@ -699,24 +711,43 @@ export class TaskAssignmentArticleComponent implements OnInit, OnDestroy {
     this.updateActiveSection();
   }
 
+  private lastScrollUpdate = 0;
+  
   private updateActiveSection() {
+    const now = Date.now();
+    if (now - this.lastScrollUpdate < 100) {
+      return; // Throttle updates to prevent rapid changes
+    }
+    this.lastScrollUpdate = now;
+    
     const sections = ['overview', 'assignment-process', 'task-types', 'monitoring', 'escalation'];
     const scrollPosition = window.pageYOffset + 100;
 
     for (let i = sections.length - 1; i >= 0; i--) {
       const element = document.getElementById(sections[i]);
       if (element && element.offsetTop <= scrollPosition) {
-        this.activeSection = sections[i];
+        if (this.activeSection !== sections[i]) {
+          this.activeSection = sections[i];
+        }
         break;
       }
     }
   }
 
-  scrollToSection(sectionId: string) {
+  scrollToSection(event: Event, sectionId: string) {
+    event.preventDefault();
+    event.stopPropagation();
+    
     const element = document.getElementById(sectionId);
     if (element) {
-      const offsetTop = element.offsetTop - 80;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      // Update active section immediately for better UX
+      this.activeSection = sectionId;
+      
+      // Use a slight delay to prevent conflicts with scroll listener
+      setTimeout(() => {
+        const offsetTop = element.offsetTop - 80;
+        window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      }, 10);
     }
   }
 
