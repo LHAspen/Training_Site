@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { GlobalSearchComponent } from './global-search.component';
 import { SearchResult } from '../services/search.service';
 
 @Component({
   selector: 'app-landing-page',
   standalone: true,
-  imports: [GlobalSearchComponent],
+  imports: [CommonModule, GlobalSearchComponent],
   styles: [`
     .landing-page {
       width: 100%;
@@ -193,6 +194,70 @@ import { SearchResult } from '../services/search.service';
       }
     }
 
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      margin: 20px;
+    }
+
+    .modal-title {
+      font-family: 'BordBiaSans-Bold', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1c4a4c;
+      margin: 0 0 16px 0;
+    }
+
+    .modal-message {
+      font-family: 'BordBiaSans-Regular', Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      margin: 0 0 32px 0;
+      line-height: 1.5;
+    }
+
+    .modal-button {
+      background: #009077;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'BordBiaSans-Bold', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .modal-button:hover {
+      background: #007a66;
+    }
+
+    @media (max-width: 1200px) {
+      .header-section {
+        padding: 16px 20px;
+      }
+    }
+
     @media (max-width: 768px) {
       .header-container {
         flex-direction: column;
@@ -286,54 +351,67 @@ import { SearchResult } from '../services/search.service';
       <div class="help-section">
         <h2 class="help-title">What do you need help with?</h2>
         <div class="content-cards">
-          <div class="content-card" (click)="onNavigateToHelp.emit()">
+          <div class="content-card" (click)="showMemberPortalModal()">
             <span class="card-text">System Overview</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 640 640" fill="currentColor">
-                <path d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"/>
+              <svg viewBox="0 0 320 512" fill="currentColor">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="onNavigateToHelp.emit()">
+          <div class="content-card" (click)="showMemberPortalModal()">
             <span class="card-text">Users & Roles</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 640 640" fill="currentColor">
-                <path d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"/>
+              <svg viewBox="0 0 320 512" fill="currentColor">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="onNavigateToHelp.emit()">
+          <div class="content-card" (click)="showMemberPortalModal()">
             <span class="card-text">Assignments & Review</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 640 640" fill="currentColor">
-                <path d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"/>
+              <svg viewBox="0 0 320 512" fill="currentColor">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="onNavigateToHelp.emit()">
+          <div class="content-card" (click)="showMemberPortalModal()">
             <span class="card-text">Pig Scheme</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 640 640" fill="currentColor">
-                <path d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"/>
+              <svg viewBox="0 0 320 512" fill="currentColor">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="onNavigateToHelp.emit()">
+          <div class="content-card" (click)="navigateToHelpDesk()">
             <span class="card-text">FRS HelpDesk</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 640 640" fill="currentColor">
-                <path d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"/>
+              <svg viewBox="0 0 320 512" fill="currentColor">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="onNavigateToHelp.emit()">
+          <div class="content-card" (click)="showMemberPortalModal()">
             <span class="card-text">Member Portal</span>
             <div class="card-arrow">
-              <svg viewBox="0 0 640 640" fill="currentColor">
-                <path d="M471.1 297.4C483.6 309.9 483.6 330.2 471.1 342.7L279.1 534.7C266.6 547.2 246.3 547.2 233.8 534.7C221.3 522.2 221.3 501.9 233.8 489.4L403.2 320L233.9 150.6C221.4 138.1 221.4 117.8 233.9 105.3C246.4 92.8 266.7 92.8 279.2 105.3L471.2 297.3z"/>
+              <svg viewBox="0 0 320 512" fill="currentColor">
+                <path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/>
               </svg>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Access Restriction Modal -->
+      <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3 class="modal-title">Access Restricted</h3>
+          <p class="modal-message">
+            You do not have access to this category at this time, please contact your admin.
+          </p>
+          <button class="modal-button" (click)="closeModal()">
+            OK
+          </button>
         </div>
       </div>
     </div>
@@ -342,6 +420,9 @@ import { SearchResult } from '../services/search.service';
 export class LandingPageComponent {
   @Output() onNavigateToHelp = new EventEmitter<void>();
   @Output() onNavigateTo = new EventEmitter<string>();
+  @Output() onNavigateToHelpDesk = new EventEmitter<void>();
+
+  showModal = false;
 
   handleSearchResult(result: SearchResult) {
     // Handle navigation based on search result
@@ -351,5 +432,17 @@ export class LandingPageComponent {
       this.onNavigateTo.emit('bulk-assignment');
     }
     // Add more navigation cases as needed
+  }
+
+  navigateToHelpDesk() {
+    this.onNavigateToHelpDesk.emit();
+  }
+
+  showMemberPortalModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

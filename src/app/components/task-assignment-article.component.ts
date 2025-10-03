@@ -152,7 +152,7 @@ import { SearchResult } from '../services/search.service';
       flex: 1;
       max-width: 500px;
       height: 250px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><rect width="400" height="250" fill="rgba(255,255,255,0.1)" rx="8"/><g transform="translate(100,125)"><rect x="-15" y="-15" width="30" height="30" fill="rgba(255,255,255,0.3)" rx="4"/><line x1="15" y1="-15" x2="65" y2="-15" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><line x1="15" y1="0" x2="65" y2="0" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><line x1="15" y1="15" x2="65" y2="15" stroke="rgba(255,255,255,0.6)" stroke-width="2"/></g><g transform="translate(200,125)"><rect x="-15" y="-15" width="30" height="30" fill="rgba(255,255,255,0.3)" rx="4"/><line x1="15" y1="-15" x2="65" y2="-15" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><line x1="15" y1="0" x2="65" y2="0" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><line x1="15" y1="15" x2="65" y2="15" stroke="rgba(255,255,255,0.6)" stroke-width="2"/></g><text x="50%" y="80%" text-anchor="middle" font-family="BordBiaSans-Regular" font-size="12" fill="rgba(255,255,255,0.6)">Task Management System</text></svg>') no-repeat center center;
+      background: linear-gradient(135deg, rgba(28,74,76,0.7) 0%, rgba(0,144,119,0.7) 100%);
       background-size: cover;
       border-radius: 12px;
       margin-left: 40px;
@@ -479,7 +479,9 @@ import { SearchResult } from '../services/search.service';
             </div>
           </div>
         </div>
-        <div class="hero-image"></div>
+        <div class="hero-image hero-cow">
+          <img src="assets/cow.webp" alt="Task Assignment" />
+        </div>
       </div>
 
       <!-- Content Layout -->

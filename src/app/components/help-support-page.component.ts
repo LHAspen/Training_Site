@@ -116,49 +116,48 @@ import { SearchResult } from '../services/search.service';
     }
 
     .hero-section {
-      background: #004b4e;
+      background: linear-gradient(135deg, #1c4a4c 0%, #004b4e 50%, #009077 100%);
+      padding: 60px 40px;
       position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       max-width: 1920px;
       margin: 0 auto;
-      overflow: hidden;
+      min-height: 400px;
     }
 
     .hero-content {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 400px;
+      width: 100%;
     }
 
     .hero-text {
-      padding: 60px 40px;
       flex: 1;
       max-width: 600px;
     }
 
     .hero-title {
       font-family: 'BordBiaSans-Bold', Arial, sans-serif;
-      font-size: 60px;
+      font-size: 48px;
       font-weight: bold;
       color: white;
-      margin: 0 0 24px 0;
-      line-height: 1;
+      margin: 0 0 16px 0;
+      line-height: 1.1;
     }
 
     .hero-subtitle {
       font-family: 'BordBiaSans-Regular', Arial, sans-serif;
-      font-size: 24px;
-      color: white;
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
       margin: 0;
-      line-height: 1.2;
+      line-height: 1.4;
     }
 
     .hero-image {
-      flex: 1;
-      height: 400px;
-      background: linear-gradient(135deg, rgba(0,144,119,0.3) 0%, rgba(28,74,76,0.3) 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect fill="%23005a5c" width="800" height="400"/><circle cx="600" cy="150" r="100" fill="%23007b7e" opacity="0.7"/><circle cx="700" cy="250" r="80" fill="%23009077" opacity="0.5"/><rect x="500" y="100" width="200" height="200" rx="20" fill="%23ffffff" opacity="0.1"/></svg>')
-                  right center/cover;
+      margin-left: 40px;
     }
 
 
@@ -218,33 +217,23 @@ import { SearchResult } from '../services/search.service';
     }
 
     .card-image-1 {
-      background: linear-gradient(135deg, #e8f5f3 0%, #f0f9f8 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23f8fffe" width="256" height="192"/><rect x="40" y="40" width="176" height="112" rx="8" fill="%23ffffff" stroke="%23e0e0e0" stroke-width="2"/><circle cx="80" cy="80" r="20" fill="%23009077"/><path d="M70 75h20m-10-5v10" stroke="%23ffffff" stroke-width="2" stroke-linecap="round"/><rect x="110" y="65" width="80" height="6" fill="%23004b4e" rx="3"/><rect x="110" y="80" width="60" height="4" fill="%23cccccc" rx="2"/><rect x="110" y="90" width="70" height="4" fill="%23cccccc" rx="2"/><circle cx="200" cy="60" r="12" fill="%23cd546d"/><path d="M195 55l10 10m0-10l-10 10" stroke="%23ffffff" stroke-width="2" stroke-linecap="round"/><rect x="60" y="120" width="136" height="20" fill="%23f8f9fa" stroke="%23e0e0e0" rx="4"/><circle cx="75" cy="130" r="4" fill="%23009077"/><rect x="85" y="127" width="40" height="3" fill="%23004b4e"/><rect x="85" y="133" width="30" height="2" fill="%23cccccc"/></svg>')
-                  center/contain;
+      /* Image handled by global CSS class */
     }
 
     .card-image-2 {
-      background: linear-gradient(135deg, #f3f0e8 0%, #f8f5f0 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23fefdf8" width="256" height="192"/><rect x="30" y="30" width="196" height="132" rx="8" fill="%23ffffff" stroke="%23e0e0e0" stroke-width="2"/><rect x="50" y="50" width="40" height="30" fill="%23009077" rx="4"/><rect x="110" y="50" width="40" height="30" fill="%23004b4e" rx="4"/><rect x="170" y="50" width="40" height="30" fill="%23cd546d" rx="4"/><circle cx="70" cy="65" r="8" fill="%23ffffff"/><text x="70" y="70" font-family="Arial" font-size="10" fill="%23ffffff" text-anchor="middle">1</text><circle cx="130" cy="65" r="8" fill="%23ffffff"/><text x="130" y="70" font-family="Arial" font-size="10" fill="%23ffffff" text-anchor="middle">2</text><circle cx="190" cy="65" r="8" fill="%23ffffff"/><text x="190" y="70" font-family="Arial" font-size="10" fill="%23ffffff" text-anchor="middle">3</text><path d="M90 65h10 M150 65h10" stroke="%23cccccc" stroke-width="2" marker-end="url(%23arrowhead)"/><rect x="50" y="95" width="156" height="4" fill="%23e0e0e0" rx="2"/><rect x="50" y="105" width="120" height="4" fill="%23e0e0e0" rx="2"/><rect x="50" y="115" width="140" height="4" fill="%23e0e0e0" rx="2"/><rect x="50" y="125" width="100" height="4" fill="%23e0e0e0" rx="2"/></svg>')
-                  center/contain;
+      /* Image handled by global CSS class */
     }
 
     .card-image-3 {
-      background: linear-gradient(135deg, #f0e8f3 0%, #f5f0f8 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23fdf8fe" width="256" height="192"/><rect x="30" y="40" width="196" height="112" rx="8" fill="%23ffffff" stroke="%23e0e0e0" stroke-width="2"/><circle cx="80" cy="85" r="25" fill="%23009077"/><circle cx="80" cy="85" r="15" fill="%23ffffff"/><circle cx="80" cy="85" r="8" fill="%23cd546d"/><rect x="120" y="65" width="80" height="8" fill="%23004b4e" rx="4"/><rect x="120" y="80" width="60" height="6" fill="%23cccccc" rx="3"/><rect x="120" y="92" width="70" height="6" fill="%23cccccc" rx="3"/><rect x="120" y="104" width="50" height="6" fill="%23cccccc" rx="3"/><rect x="50" y="125" width="156" height="12" fill="%23f8f9fa" stroke="%23e0e0e0" rx="6"/><circle cx="65" cy="131" r="3" fill="%23009077"/><circle cx="75" cy="131" r="3" fill="%23009077"/><circle cx="85" cy="131" r="3" fill="%23cd546d"/><rect x="95" y="129" width="4" height="4" fill="%23cccccc"/><rect x="105" y="129" width="4" height="4" fill="%23cccccc"/><rect x="115" y="129" width="4" height="4" fill="%23cccccc"/></svg>')
-                  center/contain;
+      /* Image handled by global CSS class */
     }
 
     .card-image-4 {
-      background: linear-gradient(135deg, #e8f0f3 0%, #f0f5f8 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23f8fbfe" width="256" height="192"/><rect x="40" y="30" width="176" height="132" rx="8" fill="%23ffffff" stroke="%23e0e0e0" stroke-width="2"/><rect x="60" y="50" width="136" height="8" fill="%23004b4e" rx="4"/><circle cx="75" cy="75" r="4" fill="%23009077"/><rect x="85" y="72" width="80" height="3" fill="%23cccccc"/><rect x="85" y="78" width="60" height="2" fill="%23e0e0e0"/><circle cx="75" cy="95" r="4" fill="%23cd546d"/><rect x="85" y="92" width="70" height="3" fill="%23cccccc"/><rect x="85" y="98" width="50" height="2" fill="%23e0e0e0"/><circle cx="75" cy="115" r="4" fill="%23009077"/><rect x="85" y="112" width="90" height="3" fill="%23cccccc"/><rect x="85" y="118" width="65" height="2" fill="%23e0e0e0"/><circle cx="75" cy="135" r="4" fill="%23004b4e"/><rect x="85" y="132" width="75" height="3" fill="%23cccccc"/><rect x="85" y="138" width="55" height="2" fill="%23e0e0e0"/><rect x="180" y="70" width="20" height="15" fill="%23f8f9fa" stroke="%23e0e0e0" rx="2"/><path d="M185 77l5-3 5 3v8l-5 3-5-3z" fill="%23009077"/></svg>')
-                  center/contain;
+      /* Image handled by global CSS class */
     }
 
     .card-image-5 {
-      background: linear-gradient(135deg, #f3e8e8 0%, #f8f0f0 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23fef8f8" width="256" height="192"/><rect x="30" y="30" width="196" height="132" rx="8" fill="%23ffffff" stroke="%23e0e0e0" stroke-width="2"/><circle cx="70" cy="70" r="15" fill="%23009077"/><circle cx="70" cy="65" r="6" fill="%23ffffff"/><rect x="70" y="75" width="12" height="8" fill="%23ffffff" rx="2"/><circle cx="130" cy="70" r="15" fill="%23004b4e"/><circle cx="130" cy="65" r="6" fill="%23ffffff"/><rect x="130" y="75" width="12" height="8" fill="%23ffffff" rx="2"/><circle cx="186" cy="70" r="15" fill="%23cd546d"/><circle cx="186" cy="65" r="6" fill="%23ffffff"/><rect x="186" y="75" width="12" height="8" fill="%23ffffff" rx="2"/><path d="M85 70h25 M155 70h16" stroke="%23cccccc" stroke-width="3" marker-end="url(%23arrowhead)"/><rect x="50" y="105" width="156" height="6" fill="%23004b4e" rx="3"/><rect x="60" y="120" width="50" height="20" fill="%23f8f9fa" stroke="%23e0e0e0" rx="4"/><rect x="130" y="120" width="50" height="20" fill="%23f8f9fa" stroke="%23e0e0e0" rx="4"/><circle cx="75" cy="130" r="3" fill="%23009077"/><circle cx="155" cy="130" r="3" fill="%23cd546d"/></svg>')
-                  center/contain;
+      /* Image handled by global CSS class */
     }
 
     .card-content {
@@ -423,12 +412,24 @@ import { SearchResult } from '../services/search.service';
       margin: 0;
     }
 
+      .hero-section {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+        padding: 40px 20px;
+      }
+
+      .hero-image {
+        margin-left: 0;
+        max-width: 100%;
+      }
+
       .hero-title {
-        font-size: 36px;
+        font-size: 28px;
       }
 
       .hero-subtitle {
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .content-cards {
@@ -487,14 +488,14 @@ import { SearchResult } from '../services/search.service';
       <div class="hero-section">
         <div class="hero-content">
           <div class="hero-text">
-                        <h1 class="hero-title">FRS HelpDesk</h1>
+            <h1 class="hero-title">FRS HelpDesk</h1>
             <p class="hero-subtitle">
               Essential resources and contact information to facilitate effective collaboration and 
               assistance throughout the audit process
             </p>
           </div>
-          <div class="hero-image">
-            <!-- Background image will be set via CSS -->
+          <div class="hero-image hero-frs-helpdesk">
+            <img src="assets/Help_hero.jpg" alt="FRS HelpDesk" />
           </div>
         </div>
       </div>
@@ -584,7 +585,7 @@ export class HelpSupportPageComponent {
       title: 'Pre-Audit Calls',
       minutes: '5 Minutes',
       date: '21/09/25',
-      imageClass: 'card-image-1',
+      imageClass: 'card-image-1 help-card-image-1',
       keywords: ['pre-audit', 'calls', 'preparation', 'communication', 'before'],
       clickHandler: () => this.onNavigateToPreAuditCalls.emit()
     },
@@ -593,7 +594,7 @@ export class HelpSupportPageComponent {
       title: 'Task Assignment',
       minutes: '8 Minutes',
       date: '19/09/25',
-      imageClass: 'card-image-2',
+      imageClass: 'card-image-2 help-card-image-2',
       keywords: ['task', 'assignment', 'manage', 'audit', 'workflow'],
       clickHandler: () => this.onNavigateToTaskAssignment.emit()
     },
@@ -602,7 +603,7 @@ export class HelpSupportPageComponent {
       title: 'Call Logging',
       minutes: '7 Minutes',
       date: '15/09/25',
-      imageClass: 'card-image-3',
+      imageClass: 'card-image-3 help-card-image-3',
       keywords: ['call', 'logging', 'recording', 'tracking', 'phone', 'communication'],
       clickHandler: () => this.onNavigateToCallLogging.emit()
     },
@@ -611,7 +612,7 @@ export class HelpSupportPageComponent {
       title: 'Help Desk History',
       minutes: '9 Minutes',
       date: '14/09/25',
-      imageClass: 'card-image-4',
+      imageClass: 'card-image-4 help-card-image-4',
       keywords: ['help', 'desk', 'history', 'past', 'records'],
       clickHandler: () => this.onNavigateToHelpDeskHistory.emit()
     },
@@ -620,7 +621,7 @@ export class HelpSupportPageComponent {
       title: 'Bulk Assignment of Auditors',
       minutes: '9 Minutes',
       date: '12/09/25',
-      imageClass: 'card-image-5',
+      imageClass: 'card-image-5 help-card-image-5',
       keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit'],
       clickHandler: () => this.onNavigateToBulkAssignment.emit()
     }

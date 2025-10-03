@@ -152,7 +152,7 @@ import { SearchResult } from '../services/search.service';
       flex: 1;
       max-width: 500px;
       height: 250px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><rect width="400" height="250" fill="rgba(255,255,255,0.1)" rx="8"/><g transform="translate(200,125)"><rect x="-40" y="-30" width="80" height="60" fill="rgba(255,255,255,0.2)" rx="8"/><rect x="-30" y="-20" width="60" height="8" fill="rgba(255,255,255,0.4)"/><rect x="-30" y="-5" width="45" height="6" fill="rgba(255,255,255,0.3)"/><rect x="-30" y="10" width="50" height="6" fill="rgba(255,255,255,0.3)"/><circle cx="20" cy="0" r="8" fill="rgba(255,255,255,0.5)"/><path d="M16,-4 L24,4 M24,-4 L16,4" stroke="rgba(255,255,255,0.8)" stroke-width="2"/></g><text x="50%" y="80%" text-anchor="middle" font-family="BordBiaSans-Regular" font-size="12" fill="rgba(255,255,255,0.6)">Historical Records System</text></svg>') no-repeat center center;
+      background: linear-gradient(135deg, rgba(28,74,76,0.7) 0%, rgba(0,144,119,0.7) 100%);
       background-size: cover;
       border-radius: 12px;
       margin-left: 40px;
@@ -479,7 +479,9 @@ import { SearchResult } from '../services/search.service';
             </div>
           </div>
         </div>
-        <div class="hero-image"></div>
+        <div class="hero-image hero-grass">
+          <img src="assets/Touching_grass.webp" alt="Help Desk History" />
+        </div>
       </div>
 
       <!-- Content Layout -->

@@ -152,7 +152,7 @@ import { SearchResult } from '../services/search.service';
       flex: 1;
       max-width: 500px;
       height: 250px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><rect width="400" height="250" fill="rgba(255,255,255,0.1)" rx="8"/><g transform="translate(200,125)"><circle r="30" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2"/><path d="M-10,-10 L10,10 M10,-10 L-10,10" stroke="rgba(255,255,255,0.6)" stroke-width="2"/><rect x="-25" y="15" width="50" height="20" fill="rgba(255,255,255,0.3)" rx="4"/><line x1="-20" y1="20" x2="20" y2="20" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><line x1="-20" y1="25" x2="10" y2="25" stroke="rgba(255,255,255,0.6)" stroke-width="1"/><line x1="-20" y1="30" x2="15" y2="30" stroke="rgba(255,255,255,0.6)" stroke-width="1"/></g><text x="50%" y="80%" text-anchor="middle" font-family="BordBiaSans-Regular" font-size="12" fill="rgba(255,255,255,0.6)">Call Recording System</text></svg>') no-repeat center center;
+      background: linear-gradient(135deg, rgba(28,74,76,0.7) 0%, rgba(0,144,119,0.7) 100%);
       background-size: cover;
       border-radius: 12px;
       margin-left: 40px;
@@ -479,7 +479,9 @@ import { SearchResult } from '../services/search.service';
             </div>
           </div>
         </div>
-        <div class="hero-image"></div>
+        <div class="hero-image hero-auditor">
+          <img src="assets/auditor.webp" alt="Call Logging" />
+        </div>
       </div>
 
       <!-- Content Layout -->

@@ -1,7 +1,10 @@
 <!-- Landing Page -->
 <div *ngIf="currentPage === 'landing'" class="min-h-screen flex flex-col">
   <div class="flex-1">
-    <app-landing-page (onNavigateToHelp)="handleNavigateToHelp()"></app-landing-page>
+    <app-landing-page 
+      (onNavigateToHelp)="handleNavigateToHelp()"
+      (onNavigateToHelpDesk)="handleNavigateToHelpDesk()">
+    </app-landing-page>
   </div>
   <app-footer></app-footer>
 </div>

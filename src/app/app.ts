@@ -34,6 +34,10 @@ export class App implements OnInit {
     this.navigationService.navigateToHelp();
   }
 
+  handleNavigateToHelpDesk() {
+    this.navigationService.navigateToHelp();
+  }
+
   handleNavigateToHome() {
     this.navigationService.navigateToHome();
   }

@@ -152,7 +152,7 @@ import { SearchResult } from '../services/search.service';
       flex: 1;
       max-width: 500px;
       height: 250px;
-      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><rect width="400" height="250" fill="rgba(255,255,255,0.1)" rx="8"/><g transform="translate(200,125)"><circle r="40" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/><path d="M-15,-10 L15,0 L-15,10 Z" fill="rgba(255,255,255,0.8)"/></g><text x="50%" y="80%" text-anchor="middle" font-family="BordBiaSans-Regular" font-size="12" fill="rgba(255,255,255,0.6)">Pre-Audit Communication</text></svg>') no-repeat center center;
+      background: linear-gradient(135deg, rgba(28,74,76,0.7) 0%, rgba(0,144,119,0.7) 100%);
       background-size: cover;
       border-radius: 12px;
       margin-left: 40px;
@@ -479,7 +479,9 @@ import { SearchResult } from '../services/search.service';
             </div>
           </div>
         </div>
-        <div class="hero-image"></div>
+        <div class="hero-image hero-farmer">
+          <img src="assets/farmer-365x365.webp" alt="Pre Audit Calls" />
+        </div>
       </div>
 
       <!-- Content Layout -->
