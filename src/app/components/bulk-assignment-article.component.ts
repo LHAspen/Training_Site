@@ -900,6 +900,12 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
     } else if (result.url === '/bulk-assignment') {
       // Stay on current page or scroll to relevant section
       console.log('Search result for bulk assignment:', result.title);
+    } else if (result.url === 'restricted') {
+      // Navigate to home for landing page restricted content
+      this.router.navigate(['/']);
+    } else if (result.url === 'restricted-fsr') {
+      // Navigate to FSR page for FSR restricted content
+      this.router.navigate(['/help-support']);
     }
     // Add more navigation cases as needed
   }

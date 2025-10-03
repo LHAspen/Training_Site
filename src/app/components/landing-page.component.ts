@@ -370,7 +370,7 @@ import { SearchResult } from '../services/search.service';
       <div class="help-section">
         <h2 class="help-title">What do you need help with?</h2>
         <div class="content-cards">
-          <div class="content-card" (click)="showMemberPortalModal()">
+          <div class="content-card" (click)="showAccessModal()">
             <span class="card-text">System Overview</span>
             <div class="card-arrow">
               <svg viewBox="0 0 320 512" fill="currentColor">
@@ -378,7 +378,7 @@ import { SearchResult } from '../services/search.service';
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="showMemberPortalModal()">
+          <div class="content-card" (click)="showAccessModal()">
             <span class="card-text">Users & Roles</span>
             <div class="card-arrow">
               <svg viewBox="0 0 320 512" fill="currentColor">
@@ -386,7 +386,7 @@ import { SearchResult } from '../services/search.service';
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="showMemberPortalModal()">
+          <div class="content-card" (click)="showAccessModal()">
             <span class="card-text">Assignments & Review</span>
             <div class="card-arrow">
               <svg viewBox="0 0 320 512" fill="currentColor">
@@ -394,7 +394,7 @@ import { SearchResult } from '../services/search.service';
               </svg>
             </div>
           </div>
-          <div class="content-card" (click)="showMemberPortalModal()">
+          <div class="content-card" (click)="showAccessModal()">
             <span class="card-text">Pig Scheme</span>
             <div class="card-arrow">
               <svg viewBox="0 0 320 512" fill="currentColor">
@@ -447,12 +447,19 @@ export class LandingPageComponent {
       this.router.navigate(['/help-support']);
     } else if (result.url === '/bulk-assignment') {
       this.router.navigate(['/bulk-assignment']);
+    } else if (result.url === 'restricted' || result.url === 'restricted-fsr') {
+      // Show access modal for restricted content
+      this.showAccessModal();
     }
     // Add more navigation cases as needed
   }
 
   navigateToHelpDesk() {
     this.router.navigate(['/help-support']);
+  }
+
+  showAccessModal() {
+    this.showModal = true;
   }
 
   showMemberPortalModal() {

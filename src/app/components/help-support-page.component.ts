@@ -90,7 +90,7 @@ import { SearchResult } from '../services/search.service';
     }    .header-actions {
       display: flex;
       align-items: center;
-      gap: 24px;
+      gap: 20px;
     }
 
     .search-button-header {
@@ -294,6 +294,64 @@ import { SearchResult } from '../services/search.service';
       width: 20px;
       height: 20px;
       fill: #1c4a4c;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      margin: 20px;
+    }
+
+    .modal-title {
+      font-family: 'BordBiaSans-Bold', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1c4a4c;
+      margin: 0 0 16px 0;
+    }
+
+    .modal-message {
+      font-family: 'BordBiaSans-Regular', Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      margin: 0 0 32px 0;
+      line-height: 1.5;
+    }
+
+    .modal-button {
+      background: #009077;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'BordBiaSans-Bold', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .modal-button:hover {
+      background: #007a66;
     }
 
     .search-workshops {
@@ -581,11 +639,25 @@ import { SearchResult } from '../services/search.service';
           </div>
         </div>
       </div>
+
+      <!-- Access Restriction Modal -->
+      <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3 class="modal-title">Access Restricted</h3>
+          <p class="modal-message">
+            You do have access to this content, please contact your admin.
+          </p>
+          <button class="modal-button" (click)="closeModal()">
+            OK
+          </button>
+        </div>
+      </div>
     </div>
   `
 })
 export class HelpSupportPageComponent {
   searchQuery = '';
+  showModal = false;
 
   constructor(private router: Router) {}
   
@@ -606,7 +678,7 @@ export class HelpSupportPageComponent {
       date: '21/09/25',
       imageClass: 'card-image-1 help-card-image-1',
       keywords: ['pre-audit', 'calls', 'preparation', 'communication', 'before'],
-      clickHandler: () => console.log('Pre-Audit Calls - Coming Soon')
+      clickHandler: () => this.showAccessModal()
     },
     {
       id: 'task-assignment',
@@ -615,7 +687,7 @@ export class HelpSupportPageComponent {
       date: '19/09/25',
       imageClass: 'card-image-2 help-card-image-2',
       keywords: ['task', 'assignment', 'manage', 'audit', 'workflow'],
-      clickHandler: () => console.log('Task Assignment - Coming Soon')
+      clickHandler: () => this.showAccessModal()
     },
     {
       id: 'call-logging',
@@ -624,7 +696,7 @@ export class HelpSupportPageComponent {
       date: '15/09/25',
       imageClass: 'card-image-3 help-card-image-3',
       keywords: ['call', 'logging', 'recording', 'tracking', 'phone', 'communication'],
-      clickHandler: () => console.log('Call Logging - Coming Soon')
+      clickHandler: () => this.showAccessModal()
     },
     {
       id: 'help-desk-history',
@@ -633,7 +705,7 @@ export class HelpSupportPageComponent {
       date: '14/09/25',
       imageClass: 'card-image-4 help-card-image-4',
       keywords: ['help', 'desk', 'history', 'past', 'records'],
-      clickHandler: () => console.log('Help Desk History - Coming Soon')
+      clickHandler: () => this.showAccessModal()
     }
   ];
 
@@ -662,11 +734,25 @@ export class HelpSupportPageComponent {
     } else if (result.url === '/help-support') {
       // Stay on current page or refresh content
       console.log('Search result for help & support:', result.title);
+    } else if (result.url === 'restricted') {
+      // Navigate to home and show modal for landing page restricted content
+      this.router.navigate(['/']);
+    } else if (result.url === 'restricted-fsr') {
+      // Show FSR-specific access modal for restricted FSR content
+      this.showAccessModal();
     }
     // Add more navigation cases as needed
   }
 
   navigateToHome() {
     this.router.navigate(['/']);
+  }
+
+  showAccessModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

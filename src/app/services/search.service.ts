@@ -15,117 +15,96 @@ export interface SearchResult {
 })
 export class SearchService {
   private searchResults: SearchResult[] = [
+    // Accessible content
     {
       id: '1',
-      title: 'Beef, Lamb & Dairy',
-      description: 'Information and resources for beef, lamb and dairy schemes',
-      category: 'Category',
+      title: 'FRS HelpDesk',
+      description: 'Get support and assistance from our helpdesk team',
+      category: 'Content',
       url: '/help-support',
-      keywords: ['beef', 'lamb', 'dairy', 'livestock', 'cattle', 'milk']
+      keywords: ['frs', 'helpdesk', 'support', 'assistance', 'help', 'contact', 'desk']
     },
     {
       id: '2',
-      title: 'Pigs',
-      description: 'Pig Quality Assurance Scheme (PQAS) information',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['pigs', 'pqas', 'swine', 'pork', 'quality', 'assurance']
-    },
-    {
-      id: '3',
-      title: 'Eggs',
-      description: 'Egg production and quality standards',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['eggs', 'poultry', 'laying', 'hens', 'production']
-    },
-    {
-      id: '4',
-      title: 'Processors',
-      description: 'Food processing facilities and requirements',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['processors', 'processing', 'facilities', 'manufacturing', 'food']
-    },
-    {
-      id: '5',
-      title: 'Poultry',
-      description: 'Poultry farming and production standards',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['poultry', 'chicken', 'turkey', 'birds', 'farming']
-    },
-    {
-      id: '6',
-      title: 'Horticulture',
-      description: 'Fruit and vegetable production guidelines',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['horticulture', 'fruits', 'vegetables', 'crops', 'plants', 'growing']
-    },
-    {
-      id: '7',
-      title: 'Member Portal',
-      description: 'Access and manage your member account',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['member', 'portal', 'account', 'login', 'profile', 'access']
-    },
-    {
-      id: '8',
-      title: 'FRS HelpDesk',
-      description: 'Get support and assistance from our helpdesk team',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['helpdesk', 'support', 'assistance', 'frs', 'help', 'contact']
-    },
-    {
-      id: '9',
-      title: 'Users & Roles',
-      description: 'Manage user permissions and role assignments',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['users', 'roles', 'permissions', 'access', 'management', 'admin']
-    },
-    {
-      id: '10',
-      title: 'System Overview',
-      description: 'Understanding the Bord Bia system and its features',
-      category: 'Category',
-      url: '/help-support',
-      keywords: ['system', 'overview', 'features', 'platform', 'bord', 'bia']
-    },
-    {
-      id: '11',
       title: 'Bulk Assignment of Auditors',
       description: 'Learn how to assign multiple auditors efficiently',
       category: 'Content',
       url: '/bulk-assignment',
       keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit']
     },
+    // Restricted categories (landing page cards)
     {
-      id: '12',
+      id: '3',
+      title: 'System Overview',
+      description: 'Understanding the Bord Bia system and its features',
+      category: 'Category',
+      url: 'restricted',
+      keywords: ['system', 'overview', 'features', 'platform', 'bord', 'bia']
+    },
+    {
+      id: '4',
+      title: 'Users & Roles',
+      description: 'Manage user permissions and role assignments',
+      category: 'Category',
+      url: 'restricted',
+      keywords: ['users', 'roles', 'permissions', 'access', 'management', 'admin']
+    },
+    {
+      id: '5',
+      title: 'Assignments & Review',
+      description: 'Audit assignments and review processes',
+      category: 'Category',
+      url: 'restricted',
+      keywords: ['assignments', 'review', 'audit', 'process', 'workflow']
+    },
+    {
+      id: '6',
+      title: 'Pig Scheme',
+      description: 'Pig Quality Assurance Scheme (PQAS) information',
+      category: 'Category',
+      url: 'restricted',
+      keywords: ['pig', 'scheme', 'pqas', 'swine', 'pork', 'quality', 'assurance']
+    },
+    {
+      id: '7',
+      title: 'Member Portal',
+      description: 'Access and manage your member account',
+      category: 'Category',
+      url: 'restricted',
+      keywords: ['member', 'portal', 'account', 'login', 'profile', 'access']
+    },
+    // Restricted articles (FSR page cards)
+    {
+      id: '8',
       title: 'Pre-Audit Calls',
       description: 'Preparation and procedures for pre-audit communications',
       category: 'Content',
-      url: '/help-support',
+      url: 'restricted-fsr',
       keywords: ['pre-audit', 'calls', 'preparation', 'communication', 'before']
     },
     {
-      id: '13',
+      id: '9',
       title: 'Task Assignment',
       description: 'How to assign and manage audit tasks',
       category: 'Content',
-      url: '/help-support',
+      url: 'restricted-fsr',
       keywords: ['task', 'assignment', 'manage', 'audit', 'workflow']
     },
     {
-      id: '14',
+      id: '10',
       title: 'Call Logging',
       description: 'Recording and tracking audit-related calls',
       category: 'Content',
-      url: '/help-support',
+      url: 'restricted-fsr',
       keywords: ['call', 'logging', 'recording', 'tracking', 'phone', 'communication']
+    },
+    {
+      id: '11',
+      title: 'Help Desk History',
+      description: 'Historical records and past support interactions',
+      category: 'Content',
+      url: 'restricted-fsr',
+      keywords: ['help', 'desk', 'history', 'past', 'records', 'support']
     }
   ];
 
