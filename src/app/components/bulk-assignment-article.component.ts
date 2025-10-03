@@ -621,10 +621,7 @@ import { SearchResult } from '../services/search.service';
           </div>
         </div>
         <div class="hero-image hero-sheep">
-          <img src="assets/Sheep.webp" 
-               alt="Sheep grazing - Representing agricultural audit management" 
-               class="clickable-image"
-               (click)="openImageModal('assets/Sheep.webp', 'Sheep grazing - Representing agricultural audit management')" />
+          <img src="assets/Sheep.webp" alt="Bulk Assignment" />
         </div>
       </div>
 
@@ -751,11 +748,7 @@ import { SearchResult } from '../services/search.service';
             <div class="related-cards">
             <div class="content-card">
               <div class="card-image">
-                <img src="assets/cow.webp" 
-                     alt="Cow in field - Task Assignment for agricultural audits" 
-                     class="clickable-image"
-                     (click)="openImageModal('assets/cow.webp', 'Cow in field - Task Assignment for agricultural audits')"
-                     style="width: 100%; height: 100%; object-fit: cover;" />
+                <img src="assets/cow.webp" alt="Task Assignment" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
               <div class="card-content">
                 <h3 class="card-title">Task Assignment</h3>
@@ -785,11 +778,7 @@ import { SearchResult } from '../services/search.service';
 
             <div class="content-card">
               <div class="card-image">
-                <img src="assets/frs-helpdesk-team.jpg" 
-                     alt="FRS HelpDesk Team - Call Logging and support services" 
-                     class="clickable-image"
-                     (click)="openImageModal('assets/frs-helpdesk-team.jpg', 'FRS HelpDesk Team - Call Logging and support services')"
-                     style="width: 100%; height: 100%; object-fit: cover;" />
+                <img src="assets/frs-helpdesk-team.jpg" alt="Call Logging" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
               <div class="card-content">
                 <h3 class="card-title">Call Logging</h3>
