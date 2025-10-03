@@ -610,7 +610,7 @@ import { SearchResult } from '../services/search.service';
             
             <div class="screenshot-container">
               <div class="screenshot-placeholder">
-                <span>People Management Interface Screenshot</span>
+                 <img src="assets/Bulk-Dashboard.jpg" alt="Bulk Dashboard" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
             </div>
 
@@ -669,7 +669,7 @@ import { SearchResult } from '../services/search.service';
             <div class="related-cards">
             <div class="content-card">
               <div class="card-image">
-                <img src="assets/pexels-yankrukov-8867220.jpg" alt="Task Assignment" style="width: 100%; height: 100%; object-fit: cover;" />
+                <img src="assets/cow.webp" alt="Task Assignment" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
               <div class="card-content">
                 <h3 class="card-title">Task Assignment</h3>
@@ -699,7 +699,7 @@ import { SearchResult } from '../services/search.service';
 
             <div class="content-card">
               <div class="card-image">
-                <img src="assets/pexels-yankrukov-8867482.jpg" alt="Call Logging" style="width: 100%; height: 100%; object-fit: cover;" />
+                <img src="assets/pexels-yankrukov-8867220.jpg" alt="Call Logging" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
               <div class="card-content">
                 <h3 class="card-title">Call Logging</h3>
