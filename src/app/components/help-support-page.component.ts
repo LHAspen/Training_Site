@@ -165,7 +165,7 @@ import { SearchResult } from '../services/search.service';
 
     .content-section {
       padding: 60px 40px;
-      max-width: 1920px;
+      max-width: 1600px;
       margin: 0 auto;
     }
 
@@ -187,12 +187,13 @@ import { SearchResult } from '../services/search.service';
     .content-cards {
       display: flex;
       flex-wrap: wrap;
-      gap: 24px;
-      justify-content: flex-start;
+      gap: 12px;
+      justify-content: space-between;
     }
 
     .content-card {
-      width: 320px;
+      width: calc(20% - 9.6px);
+      min-width: 260px;
       height: 372px;
       background: white;
       border: 2px solid #f2f2f2;
@@ -201,7 +202,7 @@ import { SearchResult } from '../services/search.service';
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      flex-shrink: 0;
+      flex-shrink: 1;
     }
 
     .content-card:hover {
@@ -345,6 +346,13 @@ import { SearchResult } from '../services/search.service';
       fill: white;
     }
 
+    @media (max-width: 1400px) {
+      .content-card {
+        width: calc(25% - 9px);
+        min-width: 240px;
+      }
+    }
+
     @media (max-width: 1200px) {
       .hero-section, .content-section {
         padding-left: 20px;
@@ -359,8 +367,16 @@ import { SearchResult } from '../services/search.service';
         font-size: 20px;
       }
 
-      .content-cards {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      .content-card {
+        width: calc(33.333% - 8px);
+        min-width: 280px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .content-card {
+        width: calc(50% - 6px);
+        min-width: 300px;
       }
     }
 
@@ -578,7 +594,7 @@ export class HelpSupportPageComponent {
       id: 'bulk-assignment',
       title: 'Bulk Assignment of Auditors',
       minutes: '9 Minutes',
-      date: '12/09/25',
+      date: '23/09/25',
       imageClass: 'card-image-5 help-card-image-5',
       keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit'],
       clickHandler: () => this.router.navigate(['/bulk-assignment'])
