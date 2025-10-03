@@ -342,8 +342,8 @@ import { SearchResult } from '../services/search.service';
           <h1 class="hero-title">Bord Bia Training Portal</h1>
           <p class="hero-subtitle">Discover the platform's capabilities</p>
         </div>
-        <div class="hero-image">
-          <!-- Hero image area -->
+        <div class="hero-image hero-laptop-training">
+          <img src="assets/laptop-training-work.jpg" alt="Bord Bia Training Portal" />
         </div>
       </div>
 
