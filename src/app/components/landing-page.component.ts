@@ -186,6 +186,13 @@ import { SearchResult } from '../services/search.service';
       justify-content: center;
       width: 20px;
       height: 20px;
+      flex-shrink: 0;
+    }
+
+    .card-arrow svg {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     @media (max-width: 1200px) {
@@ -316,6 +323,17 @@ import { SearchResult } from '../services/search.service';
 
       .card-text {
         font-size: 18px;
+      }
+
+      .card-arrow {
+        width: 18px;
+        height: 18px;
+        flex-shrink: 0;
+      }
+
+      .card-arrow svg {
+        width: 100%;
+        height: 100%;
       }
     }
 
