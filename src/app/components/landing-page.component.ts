@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { GlobalSearchComponent } from './global-search.component';
 import { SearchResult } from '../services/search.service';
 
@@ -436,24 +437,22 @@ import { SearchResult } from '../services/search.service';
   `
 })
 export class LandingPageComponent {
-  @Output() onNavigateToHelp = new EventEmitter<void>();
-  @Output() onNavigateTo = new EventEmitter<string>();
-  @Output() onNavigateToHelpDesk = new EventEmitter<void>();
-
   showModal = false;
+
+  constructor(private router: Router) {}
 
   handleSearchResult(result: SearchResult) {
     // Handle navigation based on search result
     if (result.url === '/help-support') {
-      this.onNavigateToHelp.emit();
+      this.router.navigate(['/help-support']);
     } else if (result.url === '/bulk-assignment') {
-      this.onNavigateTo.emit('bulk-assignment');
+      this.router.navigate(['/bulk-assignment']);
     }
     // Add more navigation cases as needed
   }
 
   navigateToHelpDesk() {
-    this.onNavigateToHelpDesk.emit();
+    this.router.navigate(['/help-support']);
   }
 
   showMemberPortalModal() {

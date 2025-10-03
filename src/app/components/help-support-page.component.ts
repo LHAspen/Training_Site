@@ -1,6 +1,7 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { GlobalSearchComponent } from './global-search.component';
 import { SearchResult } from '../services/search.service';
 
@@ -456,7 +457,7 @@ import { SearchResult } from '../services/search.service';
       <div class="header-section">
         <div class="header-container">
           <div class="logo-section">
-            <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="onNavigateToHome.emit()" style="cursor: pointer;">
+            <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="navigateToHome()" style="cursor: pointer;">
           </div>
           <div class="header-actions">
             <app-global-search (onSearchResult)="handleSearchResult($event)"></app-global-search>
@@ -470,7 +471,7 @@ import { SearchResult } from '../services/search.service';
         <div class="breadcrumb-container">
           <ol class="breadcrumb-list">
             <li class="breadcrumb-item">
-              <button class="breadcrumb-button" (click)="onNavigateToHome.emit()">
+              <button class="breadcrumb-button" (click)="navigateToHome()">
                 Home
               </button>
             </li>
@@ -568,16 +569,9 @@ import { SearchResult } from '../services/search.service';
   `
 })
 export class HelpSupportPageComponent {
-  @Output() onNavigateToBulkAssignment = new EventEmitter<void>();
-  @Output() onNavigateToHome = new EventEmitter<void>();
-  @Output() onNavigateToHelp = new EventEmitter<void>();
-  @Output() onNavigateTo = new EventEmitter<string>();
-  @Output() onNavigateToPreAuditCalls = new EventEmitter<void>();
-  @Output() onNavigateToTaskAssignment = new EventEmitter<void>();
-  @Output() onNavigateToCallLogging = new EventEmitter<void>();
-  @Output() onNavigateToHelpDeskHistory = new EventEmitter<void>();
-
   searchQuery = '';
+
+  constructor(private router: Router) {}
   
   contentCards = [
     {
@@ -587,7 +581,7 @@ export class HelpSupportPageComponent {
       date: '21/09/25',
       imageClass: 'card-image-1 help-card-image-1',
       keywords: ['pre-audit', 'calls', 'preparation', 'communication', 'before'],
-      clickHandler: () => this.onNavigateToPreAuditCalls.emit()
+      clickHandler: () => console.log('Pre-Audit Calls - Coming Soon')
     },
     {
       id: 'task-assignment',
@@ -596,7 +590,7 @@ export class HelpSupportPageComponent {
       date: '19/09/25',
       imageClass: 'card-image-2 help-card-image-2',
       keywords: ['task', 'assignment', 'manage', 'audit', 'workflow'],
-      clickHandler: () => this.onNavigateToTaskAssignment.emit()
+      clickHandler: () => console.log('Task Assignment - Coming Soon')
     },
     {
       id: 'call-logging',
@@ -605,7 +599,7 @@ export class HelpSupportPageComponent {
       date: '15/09/25',
       imageClass: 'card-image-3 help-card-image-3',
       keywords: ['call', 'logging', 'recording', 'tracking', 'phone', 'communication'],
-      clickHandler: () => this.onNavigateToCallLogging.emit()
+      clickHandler: () => console.log('Call Logging - Coming Soon')
     },
     {
       id: 'help-desk-history',
@@ -614,7 +608,7 @@ export class HelpSupportPageComponent {
       date: '14/09/25',
       imageClass: 'card-image-4 help-card-image-4',
       keywords: ['help', 'desk', 'history', 'past', 'records'],
-      clickHandler: () => this.onNavigateToHelpDeskHistory.emit()
+      clickHandler: () => console.log('Help Desk History - Coming Soon')
     },
     {
       id: 'bulk-assignment',
@@ -623,7 +617,7 @@ export class HelpSupportPageComponent {
       date: '12/09/25',
       imageClass: 'card-image-5 help-card-image-5',
       keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit'],
-      clickHandler: () => this.onNavigateToBulkAssignment.emit()
+      clickHandler: () => this.router.navigate(['/bulk-assignment'])
     }
   ];
 
@@ -648,11 +642,15 @@ export class HelpSupportPageComponent {
   handleSearchResult(result: SearchResult) {
     // Handle navigation based on search result
     if (result.url === '/bulk-assignment') {
-      this.onNavigateToBulkAssignment.emit();
+      this.router.navigate(['/bulk-assignment']);
     } else if (result.url === '/help-support') {
       // Stay on current page or refresh content
       console.log('Search result for help & support:', result.title);
     }
     // Add more navigation cases as needed
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
   }
 }

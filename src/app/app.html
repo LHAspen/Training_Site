@@ -1,33 +1,7 @@
-<!-- Landing Page -->
-<div *ngIf="currentPage === 'landing'" class="min-h-screen flex flex-col">
+<!-- Router Outlet for All Pages -->
+<div class="min-h-screen flex flex-col">
   <div class="flex-1">
-    <app-landing-page 
-      (onNavigateToHelp)="handleNavigateToHelp()"
-      (onNavigateToHelpDesk)="handleNavigateToHelpDesk()">
-    </app-landing-page>
-  </div>
-  <app-footer></app-footer>
-</div>
-
-<!-- Help & Support Page -->
-<div *ngIf="currentPage === 'help-support'" class="min-h-screen flex flex-col">
-  <div class="flex-1">
-    <app-help-support-page 
-      (onNavigateToBulkAssignment)="handleNavigateToBulkAssignment()"
-      (onNavigateToHome)="handleNavigateToHome()"
-      (onNavigateToHelp)="handleNavigateToHelp()">
-    </app-help-support-page>
-  </div>
-  <app-footer></app-footer>
-</div>
-
-<!-- Bulk Assignment Article Page -->
-<div *ngIf="currentPage === 'bulk-assignment-article'" class="min-h-screen flex flex-col">
-  <div class="flex-1">
-    <app-bulk-assignment-article
-      (onNavigateToHome)="handleNavigateToHome()"
-      (onNavigateToHelp)="handleNavigateToHelp()">
-    </app-bulk-assignment-article>
+    <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
 </div>

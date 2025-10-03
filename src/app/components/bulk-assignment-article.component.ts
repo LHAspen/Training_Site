@@ -1,5 +1,6 @@
-import { Component, Output, EventEmitter, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { GlobalSearchComponent } from './global-search.component';
 import { SearchResult } from '../services/search.service';
 
@@ -562,7 +563,7 @@ import { SearchResult } from '../services/search.service';
       <!-- Header Section -->
       <div class="header-section">
         <div class="header-container">
-          <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="onNavigateToHome.emit()" style="cursor: pointer;">
+          <img src="./bord-bia-logo-green.svg" alt="Bord Bia - Irish Food Board" class="bord-bia-logo" (click)="navigateToHome()" style="cursor: pointer;">
           <div class="header-actions">
             <app-global-search (onSearchResult)="handleSearchResult($event)"></app-global-search>
             <button class="logout-button">Logout</button>
@@ -575,7 +576,7 @@ import { SearchResult } from '../services/search.service';
         <div class="breadcrumb-container">
           <ol class="breadcrumb-list">
             <li class="breadcrumb-item">
-              <button class="breadcrumb-button" (click)="onNavigateToHome.emit()">
+              <button class="breadcrumb-button" (click)="navigateToHome()">
                 Home
               </button>
             </li>
@@ -583,7 +584,7 @@ import { SearchResult } from '../services/search.service';
               <span class="breadcrumb-separator">></span>
             </li>
             <li class="breadcrumb-item">
-              <button class="breadcrumb-button" (click)="onNavigateToHelp.emit()">
+              <button class="breadcrumb-button" (click)="navigateToHelp()">
                 FRS HelpDesk
               </button>
             </li>
@@ -824,10 +825,6 @@ import { SearchResult } from '../services/search.service';
   `
 })
 export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
-  @Output() onNavigateToHome = new EventEmitter<void>();
-  @Output() onNavigateToHelp = new EventEmitter<void>();
-  @Output() onNavigateTo = new EventEmitter<string>();
-  
   activeSection: string = 'summary';
   private sections: string[] = ['summary', 'introduction', 'bulk-assignment', 'more-information', 'steps-to-bulk-assign'];
   
@@ -835,6 +832,8 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
   showImageModal = false;
   modalImageSrc = '';
   modalImageAlt = '';
+
+  constructor(private router: Router) {}
   
   ngOnInit() {
     // Set initial active section
@@ -897,12 +896,20 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
   handleSearchResult(result: SearchResult) {
     // Handle navigation based on search result
     if (result.url === '/help-support') {
-      this.onNavigateToHelp.emit();
+      this.router.navigate(['/help-support']);
     } else if (result.url === '/bulk-assignment') {
       // Stay on current page or scroll to relevant section
       console.log('Search result for bulk assignment:', result.title);
     }
     // Add more navigation cases as needed
+  }
+
+  navigateToHome() {
+    this.router.navigate(['/']);
+  }
+
+  navigateToHelp() {
+    this.router.navigate(['/help-support']);
   }
 
   // Modal methods
