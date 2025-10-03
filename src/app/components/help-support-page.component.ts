@@ -575,6 +575,15 @@ export class HelpSupportPageComponent {
   
   contentCards = [
     {
+      id: 'bulk-assignment',
+      title: 'Bulk Assignment of Auditors',
+      minutes: '9 Minutes',
+      date: '12/09/25',
+      imageClass: 'card-image-5 help-card-image-5',
+      keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit'],
+      clickHandler: () => this.router.navigate(['/bulk-assignment'])
+    },
+    {
       id: 'pre-audit-calls',
       title: 'Pre-Audit Calls',
       minutes: '5 Minutes',
@@ -609,15 +618,6 @@ export class HelpSupportPageComponent {
       imageClass: 'card-image-4 help-card-image-4',
       keywords: ['help', 'desk', 'history', 'past', 'records'],
       clickHandler: () => console.log('Help Desk History - Coming Soon')
-    },
-    {
-      id: 'bulk-assignment',
-      title: 'Bulk Assignment of Auditors',
-      minutes: '9 Minutes',
-      date: '12/09/25',
-      imageClass: 'card-image-5 help-card-image-5',
-      keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit'],
-      clickHandler: () => this.router.navigate(['/bulk-assignment'])
     }
   ];
 
