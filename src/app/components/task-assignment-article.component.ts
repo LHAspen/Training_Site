@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { GlobalSearchComponent } from './global-search.component';
 import { SearchResult } from '../services/search.service';
 
 @Component({
   selector: 'app-task-assignment-article',
   standalone: true,
-  imports: [GlobalSearchComponent],
+  imports: [CommonModule, GlobalSearchComponent],
   styles: [`
     .article-page {
       width: 100%;
@@ -413,6 +414,64 @@ import { SearchResult } from '../services/search.service';
         padding: 20px;
       }
     }
+
+    /* Access Restriction Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 40px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      margin: 20px;
+    }
+
+    .modal-title {
+      font-family: 'BordBiaSans-Bold', Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      color: #1c4a4c;
+      margin: 0 0 16px 0;
+    }
+
+    .modal-message {
+      font-family: 'BordBiaSans-Regular', Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      margin: 0 0 32px 0;
+      line-height: 1.5;
+    }
+
+    .modal-button {
+      background: #009077;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-family: 'BordBiaSans-Bold', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .modal-button:hover {
+      background: #007a66;
+    }
   `],
   template: `
     <div class="article-page">
@@ -689,6 +748,19 @@ import { SearchResult } from '../services/search.service';
           </div>
         </div>
       </div>
+
+      <!-- Access Restriction Modal -->
+      <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+        <div class="modal-content" (click)="$event.stopPropagation()">
+          <h3 class="modal-title">Access Restricted</h3>
+          <p class="modal-message">
+            You do not have access to this content at this time, please contact your admin.
+          </p>
+          <button class="modal-button" (click)="closeModal()">
+            OK
+          </button>
+        </div>
+      </div>
     </div>
   `
 })
@@ -700,6 +772,7 @@ export class TaskAssignmentArticleComponent implements OnInit, OnDestroy {
   @Output() onNavigateToCallLogging = new EventEmitter<void>();
 
   activeSection = 'overview';
+  showModal = false;
 
   ngOnInit() {
     this.updateActiveSection();
@@ -758,6 +831,17 @@ export class TaskAssignmentArticleComponent implements OnInit, OnDestroy {
       this.onNavigateToBulkAssignment.emit();
     } else if (result.url === '/help-support') {
       this.onNavigateToHelp.emit();
+    } else if (result.url === '/restricted' || result.url === '/restricted-frs') {
+      // Show access modal for restricted content
+      this.showAccessModal();
     }
+  }
+
+  showAccessModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
   }
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -184,16 +184,24 @@ import { SearchResult } from '../services/search.service';
       margin: 0;
     }
 
+    .search-results-count {
+      font-family: 'BordBiaSans-Regular', Arial, sans-serif;
+      font-size: 14px;
+      color: #666;
+      margin: 8px 0 0 0;
+    }
+
     .content-cards {
       display: flex;
       flex-wrap: wrap;
-      gap: 12px;
-      justify-content: space-between;
+      gap: 24px;
+      justify-content: flex-start;
     }
 
     .content-card {
-      width: calc(20% - 9.6px);
+      width: calc(20% - 19.2px);
       min-width: 260px;
+      max-width: 320px;
       height: 372px;
       background: white;
       border: 2px solid #f2f2f2;
@@ -202,7 +210,8 @@ import { SearchResult } from '../services/search.service';
       cursor: pointer;
       transition: all 0.3s ease;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      flex-shrink: 1;
+      flex-grow: 0;
+      flex-shrink: 0;
     }
 
     .content-card:hover {
@@ -406,8 +415,9 @@ import { SearchResult } from '../services/search.service';
 
     @media (max-width: 1400px) {
       .content-card {
-        width: calc(25% - 9px);
+        width: calc(25% - 18px);
         min-width: 240px;
+        max-width: 300px;
       }
     }
 
@@ -426,15 +436,17 @@ import { SearchResult } from '../services/search.service';
       }
 
       .content-card {
-        width: calc(33.333% - 8px);
+        width: calc(33.333% - 16px);
         min-width: 280px;
+        max-width: 350px;
       }
     }
 
     @media (max-width: 900px) {
       .content-card {
-        width: calc(50% - 6px);
+        width: calc(50% - 12px);
         min-width: 300px;
+        max-width: 400px;
       }
     }
 
@@ -459,32 +471,40 @@ import { SearchResult } from '../services/search.service';
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 200px;
+      min-height: 300px;
+      padding: 60px 20px;
+      margin-top: 40px;
     }
 
     .no-results-content {
       text-align: center;
       color: #6b7280;
+      max-width: 500px;
+      width: 100%;
     }
 
     .no-results-icon {
       width: 48px;
       height: 48px;
-      margin: 0 auto 16px;
+      margin: 0 auto 24px auto;
       display: block;
+      opacity: 0.6;
     }
 
     .no-results h3 {
       font-family: 'BordBiaSans-Bold', Arial, sans-serif;
-      font-size: 18px;
+      font-size: 20px;
       color: #1f2937;
-      margin: 0 0 8px 0;
+      margin: 0 0 12px 0;
+      text-align: center;
     }
 
     .no-results p {
       font-family: 'BordBiaSans-Regular', Arial, sans-serif;
-      font-size: 14px;
+      font-size: 16px;
       margin: 0;
+      text-align: center;
+      line-height: 1.5;
     }
 
       .hero-section {
@@ -508,7 +528,7 @@ import { SearchResult } from '../services/search.service';
       }
 
       .content-cards {
-        grid-template-columns: 1fr;
+        flex-direction: column;
         gap: 24px;
         width: 100%;
       }
@@ -516,6 +536,7 @@ import { SearchResult } from '../services/search.service';
       .content-card {
         width: 100%;
         max-width: none;
+        min-width: auto;
       }
 
       .search-workshops {
@@ -578,24 +599,36 @@ import { SearchResult } from '../services/search.service';
       <!-- Content Section -->
       <div class="content-section">
         <div class="content-header">
-                    <h2 class="content-title">All FRS HelpDesk Content</h2>
+          <div>
+            <h2 class="content-title">All FRS HelpDesk Content</h2>
+            <p *ngIf="searchQuery.trim() && filteredCards.length > 0" class="search-results-count">
+              Found {{ filteredCards.length }} result{{ filteredCards.length === 1 ? '' : 's' }} for "{{ searchQuery }}"
+            </p>
+          </div>
           <div class="search-workshops">
             <div class="search-container">
               <input 
                 type="text" 
                 placeholder="Search Content" 
                 class="search-input"
-                [(ngModel)]="searchQuery">
-              <button class="search-button">
-                <svg class="search-button-icon" viewBox="0 0 24 24">
+                [(ngModel)]="searchQuery"
+                (input)="onSearchInput()"
+                (keyup.enter)="performSearch()">
+              <button class="search-button" (click)="searchQuery.trim() ? performSearch() : clearSearch()" 
+                      [title]="searchQuery.trim() ? 'Search' : 'Clear search'">
+                <svg *ngIf="!searchQuery.trim()" class="search-button-icon" viewBox="0 0 24 24">
                   <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                </svg>
+                <svg *ngIf="searchQuery.trim()" class="search-button-icon" viewBox="0 0 24 24">
+                  <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                 </svg>
               </button>
             </div>
           </div>
         </div>
         
-        <div class="content-cards">
+        <!-- Content Cards -->
+        <div *ngIf="filteredCards.length > 0" class="content-cards">
           <div *ngFor="let card of filteredCards" 
                class="content-card" 
                (click)="handleCardClick(card)">
@@ -625,17 +658,17 @@ import { SearchResult } from '../services/search.service';
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- No results message -->
-          <div *ngIf="filteredCards.length === 0 && searchQuery.trim()" class="no-results">
-            <div class="no-results-content">
-              <svg class="no-results-icon" viewBox="0 0 24 24">
-                <circle cx="12" cy="12" r="10" stroke="#ccc" stroke-width="2" fill="none"/>
-                <path d="M15 9L9 15M9 9L15 15" stroke="#ccc" stroke-width="2"/>
-              </svg>
-              <h3>No content found</h3>
-              <p>Try adjusting your search terms or browse all available content.</p>
-            </div>
+        <!-- No results message -->
+        <div *ngIf="filteredCards.length === 0 && searchQuery.trim()" class="no-results">
+          <div class="no-results-content">
+            <svg class="no-results-icon" width="48" height="48" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10" stroke="#ccc" stroke-width="2" fill="none"/>
+              <path d="M15 9L9 15M9 9L15 15" stroke="#ccc" stroke-width="2"/>
+            </svg>
+            <h3>No content found</h3>
+            <p>Try adjusting your search terms or browse all available content.</p>
           </div>
         </div>
       </div>
@@ -645,7 +678,7 @@ import { SearchResult } from '../services/search.service';
         <div class="modal-content" (click)="$event.stopPropagation()">
           <h3 class="modal-title">Access Restricted</h3>
           <p class="modal-message">
-            You do have access to this content, please contact your admin.
+            You do not have access to this content at this time, please contact your admin.
           </p>
           <button class="modal-button" (click)="closeModal()">
             OK
@@ -655,11 +688,18 @@ import { SearchResult } from '../services/search.service';
     </div>
   `
 })
-export class HelpSupportPageComponent {
+export class HelpSupportPageComponent implements OnDestroy {
   searchQuery = '';
   showModal = false;
+  private searchTimeout: any;
 
   constructor(private router: Router) {}
+
+  ngOnDestroy() {
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+  }
   
   contentCards = [
     {
@@ -710,15 +750,30 @@ export class HelpSupportPageComponent {
   ];
 
   get filteredCards() {
-    if (!this.searchQuery.trim()) {
+    if (!this.searchQuery || !this.searchQuery.trim()) {
       return this.contentCards;
     }
     
-    const query = this.searchQuery.toLowerCase();
-    return this.contentCards.filter(card => 
-      card.title.toLowerCase().includes(query) ||
-      card.keywords.some(keyword => keyword.toLowerCase().includes(query))
-    );
+    const query = this.searchQuery.toLowerCase().trim();
+    return this.contentCards.filter(card => {
+      // Search in title
+      if (card.title.toLowerCase().includes(query)) {
+        return true;
+      }
+      
+      // Search in keywords
+      if (card.keywords.some(keyword => keyword.toLowerCase().includes(query))) {
+        return true;
+      }
+      
+      // Search in meta information (minutes and date)
+      if (card.minutes.toLowerCase().includes(query) || 
+          card.date.toLowerCase().includes(query)) {
+        return true;
+      }
+      
+      return false;
+    });
   }
 
   handleCardClick(card: any) {
@@ -733,12 +788,9 @@ export class HelpSupportPageComponent {
       this.router.navigate(['/bulk-assignment']);
     } else if (result.url === '/help-support') {
       // Stay on current page or refresh content
-      console.log('Search result for help & support:', result.title);
-    } else if (result.url === 'restricted') {
-      // Navigate to home and show modal for landing page restricted content
-      this.router.navigate(['/']);
-    } else if (result.url === 'restricted-fsr') {
-      // Show FSR-specific access modal for restricted FSR content
+      console.log('Search result for FRS HelpDesk:', result.title);
+    } else if (result.url === '/restricted' || result.url === '/restricted-frs') {
+      // Show access modal for restricted content
       this.showAccessModal();
     }
     // Add more navigation cases as needed
@@ -754,5 +806,27 @@ export class HelpSupportPageComponent {
 
   closeModal() {
     this.showModal = false;
+  }
+
+  onSearchInput() {
+    // Debounce search for better performance
+    if (this.searchTimeout) {
+      clearTimeout(this.searchTimeout);
+    }
+    
+    this.searchTimeout = setTimeout(() => {
+      // The filteredCards getter automatically handles the filtering
+      // This timeout ensures we don't filter too frequently while typing
+    }, 300);
+  }
+
+  performSearch() {
+    // Trigger search - the filteredCards getter handles the actual filtering
+    // This method can be used for analytics or additional search logic
+    console.log('Searching for:', this.searchQuery);
+  }
+
+  clearSearch() {
+    this.searchQuery = '';
   }
 }

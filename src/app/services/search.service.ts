@@ -15,96 +15,100 @@ export interface SearchResult {
 })
 export class SearchService {
   private searchResults: SearchResult[] = [
-    // Accessible content
+    // FRS HelpDesk Category - Accessible
     {
       id: '1',
       title: 'FRS HelpDesk',
-      description: 'Get support and assistance from our helpdesk team',
-      category: 'Content',
+      description: 'Essential resources and contact information for audit process assistance',
+      category: 'Category',
       url: '/help-support',
-      keywords: ['frs', 'helpdesk', 'support', 'assistance', 'help', 'contact', 'desk']
+      keywords: ['frs', 'helpdesk', 'support', 'assistance', 'help', 'contact', 'desk', 'audit', 'resources']
     },
+    
+    // FRS HelpDesk Content - Accessible
     {
       id: '2',
       title: 'Bulk Assignment of Auditors',
-      description: 'Learn how to assign multiple auditors efficiently',
+      description: 'Learn how to assign multiple auditors efficiently (9 minutes)',
       category: 'Content',
       url: '/bulk-assignment',
-      keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit']
+      keywords: ['bulk', 'assignment', 'auditors', 'assign', 'multiple', 'audit', 'frs', 'helpdesk']
     },
-    // Restricted categories (landing page cards)
+    
+    // FRS HelpDesk Content - Restricted
     {
       id: '3',
-      title: 'System Overview',
-      description: 'Understanding the Bord Bia system and its features',
-      category: 'Category',
-      url: 'restricted',
-      keywords: ['system', 'overview', 'features', 'platform', 'bord', 'bia']
+      title: 'Pre-Audit Calls',
+      description: 'Preparation and procedures for pre-audit communications (5 minutes)',
+      category: 'Content',
+      url: '/restricted-frs',
+      keywords: ['pre-audit', 'calls', 'preparation', 'communication', 'before', 'frs', 'helpdesk']
     },
     {
       id: '4',
-      title: 'Users & Roles',
-      description: 'Manage user permissions and role assignments',
-      category: 'Category',
-      url: 'restricted',
-      keywords: ['users', 'roles', 'permissions', 'access', 'management', 'admin']
+      title: 'Task Assignment',
+      description: 'How to assign and manage audit tasks (8 minutes)',
+      category: 'Content',
+      url: '/restricted-frs',
+      keywords: ['task', 'assignment', 'manage', 'audit', 'workflow', 'frs', 'helpdesk']
     },
     {
       id: '5',
-      title: 'Assignments & Review',
-      description: 'Audit assignments and review processes',
-      category: 'Category',
-      url: 'restricted',
-      keywords: ['assignments', 'review', 'audit', 'process', 'workflow']
+      title: 'Call Logging',
+      description: 'Recording and tracking audit-related calls (7 minutes)',
+      category: 'Content',
+      url: '/restricted-frs',
+      keywords: ['call', 'logging', 'recording', 'tracking', 'phone', 'communication', 'frs', 'helpdesk']
     },
     {
       id: '6',
-      title: 'Pig Scheme',
-      description: 'Pig Quality Assurance Scheme (PQAS) information',
-      category: 'Category',
-      url: 'restricted',
-      keywords: ['pig', 'scheme', 'pqas', 'swine', 'pork', 'quality', 'assurance']
+      title: 'Help Desk History',
+      description: 'Historical records and past help desk interactions (9 minutes)',
+      category: 'Content',
+      url: '/restricted-frs',
+      keywords: ['help', 'desk', 'history', 'past', 'records', 'interactions', 'frs', 'helpdesk']
     },
+
+    // Other Categories - Restricted
     {
       id: '7',
-      title: 'Member Portal',
-      description: 'Access and manage your member account',
+      title: 'System Overview',
+      description: 'Understanding the Bord Bia system and its features',
       category: 'Category',
-      url: 'restricted',
-      keywords: ['member', 'portal', 'account', 'login', 'profile', 'access']
+      url: '/restricted',
+      keywords: ['system', 'overview', 'features', 'platform', 'bord', 'bia']
     },
-    // Restricted articles (FSR page cards)
     {
       id: '8',
-      title: 'Pre-Audit Calls',
-      description: 'Preparation and procedures for pre-audit communications',
-      category: 'Content',
-      url: 'restricted-fsr',
-      keywords: ['pre-audit', 'calls', 'preparation', 'communication', 'before']
+      title: 'Users & Roles',
+      description: 'Manage user permissions and role assignments',
+      category: 'Category',
+      url: '/restricted',
+      keywords: ['users', 'roles', 'permissions', 'access', 'management', 'admin']
     },
     {
       id: '9',
-      title: 'Task Assignment',
-      description: 'How to assign and manage audit tasks',
-      category: 'Content',
-      url: 'restricted-fsr',
-      keywords: ['task', 'assignment', 'manage', 'audit', 'workflow']
+      title: 'Assignments & Review',
+      description: 'Manage assignments and review processes',
+      category: 'Category',
+      url: '/restricted',
+      keywords: ['assignments', 'review', 'manage', 'process', 'workflow']
     },
     {
       id: '10',
-      title: 'Call Logging',
-      description: 'Recording and tracking audit-related calls',
-      category: 'Content',
-      url: 'restricted-fsr',
-      keywords: ['call', 'logging', 'recording', 'tracking', 'phone', 'communication']
+      title: 'Pig Scheme',
+      description: 'Pig Quality Assurance Scheme (PQAS) information',
+      category: 'Category',
+      url: '/restricted',
+      keywords: ['pig', 'scheme', 'pqas', 'swine', 'pork', 'quality', 'assurance']
     },
     {
       id: '11',
-      title: 'Help Desk History',
-      description: 'Historical records and past support interactions',
-      category: 'Content',
-      url: 'restricted-fsr',
-      keywords: ['help', 'desk', 'history', 'past', 'records', 'support']
+      title: 'Member Portal',
+      description: 'Access and manage your member account',
+      category: 'Category',
+      url: '/restricted',
+      keywords: ['member', 'portal', 'account', 'login', 'profile', 'access']
     }
   ];
 

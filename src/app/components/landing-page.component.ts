@@ -425,8 +425,8 @@ import { SearchResult } from '../services/search.service';
       <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
         <div class="modal-content" (click)="$event.stopPropagation()">
           <h3 class="modal-title">Access Restricted</h3>
-          <p class="modal-message">
-            You do not have access to this category at this time, please contact your admin.
+                    <p class="modal-message">
+            You do not have access to this content at this time, please contact your admin.
           </p>
           <button class="modal-button" (click)="closeModal()">
             OK
@@ -447,7 +447,7 @@ export class LandingPageComponent {
       this.router.navigate(['/help-support']);
     } else if (result.url === '/bulk-assignment') {
       this.router.navigate(['/bulk-assignment']);
-    } else if (result.url === 'restricted' || result.url === 'restricted-fsr') {
+    } else if (result.url === '/restricted' || result.url === '/restricted-frs') {
       // Show access modal for restricted content
       this.showAccessModal();
     }

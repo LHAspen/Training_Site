@@ -511,7 +511,54 @@ import { SearchResult } from '../services/search.service';
       opacity: 0.9;
     }
 
-    /* Access Modal Styles */
+    @media (max-width: 1200px) {
+      .content-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .toc-sidebar, .related-sidebar {
+        position: static;
+      }
+
+      .hero-section {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .hero-image {
+        margin-left: 0;
+        max-width: 100%;
+      }
+
+      .hero-title {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header-container {
+        flex-direction: column;
+        gap: 16px;
+        align-items: stretch;
+      }
+
+      .header-actions {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: 28px;
+      }
+
+      .article-content {
+        padding: 20px;
+      }
+    }
+
+    /* Access Restriction Modal Styles */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -567,53 +614,6 @@ import { SearchResult } from '../services/search.service';
 
     .modal-button:hover {
       background: #007a66;
-    }
-
-    @media (max-width: 1200px) {
-      .content-layout {
-        grid-template-columns: 1fr;
-        gap: 20px;
-      }
-
-      .toc-sidebar, .related-sidebar {
-        position: static;
-      }
-
-      .hero-section {
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
-      }
-
-      .hero-image {
-        margin-left: 0;
-        max-width: 100%;
-      }
-
-      .hero-title {
-        font-size: 36px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .header-container {
-        flex-direction: column;
-        gap: 16px;
-        align-items: stretch;
-      }
-
-      .header-actions {
-        width: 100%;
-        justify-content: center;
-      }
-
-      .hero-title {
-        font-size: 28px;
-      }
-
-      .article-content {
-        padding: 20px;
-      }
     }
   `],
   template: `
@@ -805,7 +805,7 @@ import { SearchResult } from '../services/search.service';
             <h3 class="related-title">Related Content</h3>
             
             <div class="related-cards">
-            <div class="content-card" (click)="showAccessModal()">
+            <div class="content-card" (click)="handleRelatedContentClick('task-assignment')" style="cursor: pointer;">
               <div class="card-image">
                 <img src="assets/cow.webp" alt="Task Assignment" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
@@ -835,7 +835,7 @@ import { SearchResult } from '../services/search.service';
               </div>
             </div>
 
-            <div class="content-card" (click)="showAccessModal()">
+            <div class="content-card" (click)="handleRelatedContentClick('call-logging')" style="cursor: pointer;">
               <div class="card-image">
                 <img src="assets/frs-helpdesk-team.jpg" alt="Call Logging" style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
@@ -847,13 +847,73 @@ import { SearchResult } from '../services/search.service';
                       <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
                       <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"/>
                     </svg>
-                    <span>6 Minutes</span>
+                    <span>7 Minutes</span>
                   </div>
                   <div class="meta-item">
                     <svg class="meta-icon" viewBox="0 0 24 24">
                       <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
                     </svg>
                     <span>15/09/25</span>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <p class="learn-more">Learn More</p>
+                  <svg class="chevron-icon" viewBox="0 0 24 24">
+                    <path d="m8.59 16.58 4.58-4.59-4.58-4.59L10 6l6 6-6 6-1.41-1.42z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="content-card" (click)="handleRelatedContentClick('pre-audit-calls')" style="cursor: pointer;">
+              <div class="card-image">
+                <img src="assets/pexels-yankrukov-8867220.jpg" alt="Pre-Audit Calls" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">Pre-Audit Calls</h3>
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24">
+                      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"/>
+                    </svg>
+                    <span>5 Minutes</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24">
+                      <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                    </svg>
+                    <span>21/09/25</span>
+                  </div>
+                </div>
+                <div class="card-action">
+                  <p class="learn-more">Learn More</p>
+                  <svg class="chevron-icon" viewBox="0 0 24 24">
+                    <path d="m8.59 16.58 4.58-4.59-4.58-4.59L10 6l6 6-6 6-1.41-1.42z"/>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="content-card" (click)="handleRelatedContentClick('help-desk-history')" style="cursor: pointer;">
+              <div class="card-image">
+                <img src="assets/Touching_grass.webp" alt="Help Desk History" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
+              <div class="card-content">
+                <h3 class="card-title">Help Desk History</h3>
+                <div class="card-meta">
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24">
+                      <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm0 18c-4.411 0-8-3.589-8-8s3.589-8 8-8 8 3.589 8 8-3.589 8-8 8z"/>
+                      <path d="M13 7h-2v5.414l3.293 3.293 1.414-1.414L13 11.586z"/>
+                    </svg>
+                    <span>9 Minutes</span>
+                  </div>
+                  <div class="meta-item">
+                    <svg class="meta-icon" viewBox="0 0 24 24">
+                      <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                    </svg>
+                    <span>14/09/25</span>
                   </div>
                 </div>
                 <div class="card-action">
@@ -885,7 +945,7 @@ import { SearchResult } from '../services/search.service';
         <div class="modal-content" (click)="$event.stopPropagation()">
           <h3 class="modal-title">Access Restricted</h3>
           <p class="modal-message">
-            You do have access to this content, please contact your admin.
+            You do not have access to this content at this time, please contact your admin.
           </p>
           <button class="modal-button" (click)="closeModal()">
             OK
@@ -972,14 +1032,26 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
     } else if (result.url === '/bulk-assignment') {
       // Stay on current page or scroll to relevant section
       console.log('Search result for bulk assignment:', result.title);
-    } else if (result.url === 'restricted') {
-      // Navigate to home for landing page restricted content
-      this.router.navigate(['/']);
-    } else if (result.url === 'restricted-fsr') {
-      // Navigate to FSR page for FSR restricted content
-      this.router.navigate(['/help-support']);
+    } else if (result.url === '/restricted' || result.url === '/restricted-frs') {
+      // Show access modal for restricted content
+      this.showAccessModal();
     }
     // Add more navigation cases as needed
+  }
+
+  showAccessModal() {
+    this.showModal = true;
+  }
+
+  closeModal() {
+    this.showModal = false;
+  }
+
+  handleRelatedContentClick(contentType: string) {
+    // All related content in FRS HelpDesk is restricted, so show access modal
+    // contentType can be: 'task-assignment', 'call-logging', 'pre-audit-calls', 'help-desk-history'
+    console.log(`User attempted to access restricted content: ${contentType}`);
+    this.showAccessModal();
   }
 
   navigateToHome() {
@@ -1011,16 +1083,6 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
   onEscapeKey() {
     if (this.showImageModal) {
       this.closeImageModal();
-    } else if (this.showModal) {
-      this.closeModal();
     }
-  }
-
-  showAccessModal() {
-    this.showModal = true;
-  }
-
-  closeModal() {
-    this.showModal = false;
   }
 }
