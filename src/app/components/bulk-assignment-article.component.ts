@@ -375,35 +375,7 @@ import { SearchResult } from '../services/search.service';
       background-repeat: no-repeat;
     }
 
-    .card-image-1 {
-      background: linear-gradient(135deg, #e8f5f3 0%, #f0f9f8 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23f8fffe" width="256" height="192"/><rect x="16" y="16" width="224" height="120" rx="6" fill="%23ffffff" stroke="%23e0e0e0"/><rect x="32" y="32" width="192" height="6" fill="%23004b4e"/><rect x="32" y="48" width="144" height="4" fill="%23cccccc"/><rect x="32" y="64" width="160" height="4" fill="%23cccccc"/><rect x="32" y="80" width="128" height="4" fill="%23cccccc"/></svg>')
-                  center/contain;
-    }
 
-    .card-image-2 {
-      background: linear-gradient(135deg, #f3f0e8 0%, #f8f5f0 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23fefdf8" width="256" height="192"/><rect x="16" y="16" width="224" height="120" rx="6" fill="%23ffffff" stroke="%23e0e0e0"/><circle cx="80" cy="64" r="16" fill="%23009077"/><rect x="112" y="52" width="80" height="6" fill="%23004b4e"/><rect x="112" y="68" width="64" height="4" fill="%23cccccc"/><rect x="32" y="96" width="192" height="4" fill="%23cccccc"/></svg>')
-                  center/contain;
-    }
-
-    .card-image-3 {
-      background: linear-gradient(135deg, #f0e8f3 0%, #f5f0f8 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23fdf8fe" width="256" height="192"/><rect x="16" y="16" width="224" height="120" rx="6" fill="%23ffffff" stroke="%23e0e0e0"/><rect x="32" y="32" width="48" height="32" fill="%23004b4e"/><rect x="96" y="32" width="48" height="32" fill="%23009077"/><rect x="160" y="32" width="48" height="32" fill="%23cd546d"/><rect x="32" y="80" width="192" height="4" fill="%23cccccc"/></svg>')
-                  center/contain;
-    }
-
-    .card-image-4 {
-      background: linear-gradient(135deg, #e8f0f3 0%, #f0f5f8 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23f8fbfe" width="256" height="192"/><rect x="16" y="16" width="224" height="120" rx="6" fill="%23ffffff" stroke="%23e0e0e0"/><rect x="32" y="32" width="192" height="6" fill="%23004b4e"/><rect x="32" y="48" width="192" height="64" fill="%23f8f9fa" stroke="%23e0e0e0"/><rect x="40" y="56" width="176" height="4" fill="%23cccccc"/><rect x="40" y="72" width="144" height="4" fill="%23cccccc"/></svg>')
-                  center/contain;
-    }
-
-    .card-image-5 {
-      background: linear-gradient(135deg, #f3e8e8 0%, #f8f0f0 100%),
-                  url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 192"><rect fill="%23fef8f8" width="256" height="192"/><rect x="16" y="16" width="224" height="120" rx="6" fill="%23ffffff" stroke="%23e0e0e0"/><rect x="32" y="32" width="192" height="6" fill="%23004b4e"/><rect x="32" y="48" width="80" height="64" fill="%23f8f9fa" stroke="%23e0e0e0"/><rect x="128" y="48" width="80" height="64" fill="%23f8f9fa" stroke="%23e0e0e0"/></svg>')
-                  center/contain;
-    }
 
     .card-content {
       padding: 16px;
@@ -537,7 +509,7 @@ import { SearchResult } from '../services/search.service';
             </li>
             <li class="breadcrumb-item">
               <button class="breadcrumb-button" (click)="onNavigateToHelp.emit()">
-                FSR HelpDesk
+                FRS HelpDesk
               </button>
             </li>
             <li class="breadcrumb-item">
@@ -696,7 +668,9 @@ import { SearchResult } from '../services/search.service';
             
             <div class="related-cards">
             <div class="content-card">
-              <div class="card-image card-image-1"></div>
+              <div class="card-image">
+                <img src="assets/pexels-yankrukov-8867220.jpg" alt="Task Assignment" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
               <div class="card-content">
                 <h3 class="card-title">Task Assignment</h3>
                 <div class="card-meta">
@@ -724,7 +698,9 @@ import { SearchResult } from '../services/search.service';
             </div>
 
             <div class="content-card">
-              <div class="card-image card-image-3"></div>
+              <div class="card-image">
+                <img src="assets/pexels-yankrukov-8867482.jpg" alt="Call Logging" style="width: 100%; height: 100%; object-fit: cover;" />
+              </div>
               <div class="card-content">
                 <h3 class="card-title">Call Logging</h3>
                 <div class="card-meta">
