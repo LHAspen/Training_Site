@@ -1,11 +1,12 @@
 import { Component, Output, EventEmitter, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { GlobalSearchComponent } from './global-search.component';
 import { SearchResult } from '../services/search.service';
 
 @Component({
   selector: 'app-bulk-assignment-article',
   standalone: true,
-  imports: [GlobalSearchComponent],
+  imports: [CommonModule, GlobalSearchComponent],
   styles: [`
     .article-page {
       width: 100%;
@@ -435,6 +436,80 @@ import { SearchResult } from '../services/search.service';
       fill: #1c4a4c;
     }
 
+    /* Image Modal Styles */
+    .image-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .modal-content-image {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .modal-image {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    }
+
+    .modal-caption {
+      color: white;
+      font-family: 'BordBiaSans-Regular', Arial, sans-serif;
+      font-size: 16px;
+      text-align: center;
+      margin: 0;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: -50px;
+      right: 0;
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      background: rgba(255, 255, 255, 0.2);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .clickable-image {
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .clickable-image:hover {
+      opacity: 0.9;
+    }
+
     @media (max-width: 1200px) {
       .content-layout {
         grid-template-columns: 1fr;
@@ -546,7 +621,10 @@ import { SearchResult } from '../services/search.service';
           </div>
         </div>
         <div class="hero-image hero-sheep">
-          <img src="assets/Sheep.webp" alt="Bulk Assignment" />
+          <img src="assets/Sheep.webp" 
+               alt="Sheep grazing - Representing agricultural audit management" 
+               class="clickable-image"
+               (click)="openImageModal('assets/Sheep.webp', 'Sheep grazing - Representing agricultural audit management')" />
         </div>
       </div>
 
@@ -610,7 +688,11 @@ import { SearchResult } from '../services/search.service';
             
             <div class="screenshot-container">
               <div class="screenshot-placeholder">
-                 <img src="assets/Bulk-Dashboard.jpg" alt="Bulk Dashboard" style="width: 100%; height: 100%; object-fit: cover;" />
+                 <img src="assets/Bulk-Dashboard.jpg" 
+                      alt="Bulk Dashboard - Shows the interface for managing bulk auditor assignments" 
+                      class="clickable-image"
+                      (click)="openImageModal('assets/Bulk-Dashboard.jpg', 'Bulk Dashboard - Shows the interface for managing bulk auditor assignments')"
+                      style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
             </div>
 
@@ -669,7 +751,11 @@ import { SearchResult } from '../services/search.service';
             <div class="related-cards">
             <div class="content-card">
               <div class="card-image">
-                <img src="assets/cow.webp" alt="Task Assignment" style="width: 100%; height: 100%; object-fit: cover;" />
+                <img src="assets/cow.webp" 
+                     alt="Cow in field - Task Assignment for agricultural audits" 
+                     class="clickable-image"
+                     (click)="openImageModal('assets/cow.webp', 'Cow in field - Task Assignment for agricultural audits')"
+                     style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
               <div class="card-content">
                 <h3 class="card-title">Task Assignment</h3>
@@ -699,7 +785,11 @@ import { SearchResult } from '../services/search.service';
 
             <div class="content-card">
               <div class="card-image">
-                <img src="assets/pexels-yankrukov-8867220.jpg" alt="Call Logging" style="width: 100%; height: 100%; object-fit: cover;" />
+                <img src="assets/frs-helpdesk-team.jpg" 
+                     alt="FRS HelpDesk Team - Call Logging and support services" 
+                     class="clickable-image"
+                     (click)="openImageModal('assets/frs-helpdesk-team.jpg', 'FRS HelpDesk Team - Call Logging and support services')"
+                     style="width: 100%; height: 100%; object-fit: cover;" />
               </div>
               <div class="card-content">
                 <h3 class="card-title">Call Logging</h3>
@@ -730,6 +820,17 @@ import { SearchResult } from '../services/search.service';
           </div>
         </aside>
       </div>
+
+      <!-- Image Modal -->
+      <div *ngIf="showImageModal" class="image-modal" (click)="closeImageModal()">
+        <div class="modal-content-image" (click)="$event.stopPropagation()">
+          <button class="modal-close" (click)="closeImageModal()" aria-label="Close image modal">
+            ×
+          </button>
+          <img [src]="modalImageSrc" [alt]="modalImageAlt" class="modal-image" />
+          <p class="modal-caption">{{ modalImageAlt }}</p>
+        </div>
+      </div>
     </div>
   `
 })
@@ -741,13 +842,21 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
   activeSection: string = 'summary';
   private sections: string[] = ['summary', 'introduction', 'bulk-assignment', 'more-information', 'steps-to-bulk-assign'];
   
+  // Modal properties
+  showImageModal = false;
+  modalImageSrc = '';
+  modalImageAlt = '';
+  
   ngOnInit() {
     // Set initial active section
     this.updateActiveSection();
   }
   
   ngOnDestroy() {
-    // Cleanup if needed
+    // Restore body scrolling if modal was open
+    if (this.showImageModal) {
+      document.body.style.overflow = 'auto';
+    }
   }
   
   @HostListener('window:scroll')
@@ -805,5 +914,29 @@ export class BulkAssignmentArticleComponent implements OnInit, OnDestroy {
       console.log('Search result for bulk assignment:', result.title);
     }
     // Add more navigation cases as needed
+  }
+
+  // Modal methods
+  openImageModal(imageSrc: string, imageAlt: string) {
+    this.modalImageSrc = imageSrc;
+    this.modalImageAlt = imageAlt;
+    this.showImageModal = true;
+    // Prevent body scrolling when modal is open
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeImageModal() {
+    this.showImageModal = false;
+    this.modalImageSrc = '';
+    this.modalImageAlt = '';
+    // Restore body scrolling
+    document.body.style.overflow = 'auto';
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscapeKey() {
+    if (this.showImageModal) {
+      this.closeImageModal();
+    }
   }
 }
